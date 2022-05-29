@@ -16,6 +16,7 @@ module.exports = {
     }),
   ],
   devServer: {
+    historyApiFallback: true,
     port: 3030, // you can change the port
   },
 //   externals: {
@@ -35,7 +36,7 @@ module.exports = {
         use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
-        test: /\.(png|woff|woff2|eot|ttf|svg)$/, // to import images and fonts
+        test: /\.(png|woff|woff2|eot|ttf|svg|jpeg)$/, // to import images and fonts
         loader: "url-loader",
         options: { limit: false },
       },

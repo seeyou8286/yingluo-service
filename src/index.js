@@ -17,7 +17,7 @@ const hashHistory = createBrowserHistory();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter history={hashHistory}>
-    <Router />
+    <Router/>
   </BrowserRouter>
 );
 
