@@ -50,7 +50,7 @@ class MuiVirtualizedTable extends React.PureComponent {
 
   static defaultProps = {
     headerHeight: 48,
-    rowHeight: 48,
+    rowHeight: 80,
   };
 
   getRowClassName = ({ index }) => {
@@ -180,19 +180,19 @@ export default class  OrderList extends React.Component{
           rowGetter={({ index }) => this.state.data[index]}
           columns={[
             {
-              width: 80,
+              width: 60,
               label: '序号',
               dataKey: 'id',
             },
             {
-              width: 100,
+              width: 120,
               label: '项目',
               dataKey: 'item'
             },
             {
               width: 100,
               label: '精油选择',
-              dataKey: 'oilType'
+              dataKey: 'oiltype'
             },
             {
               width: 100,
@@ -201,28 +201,28 @@ export default class  OrderList extends React.Component{
             },
             {
               width: 100,
-              label: '精油使用量',
-              dataKey: 'oilVolumn'
+              label: '地址',
+              dataKey: 'place'
             },
             {
               width: 100,
               label: '精油使用量',
-              dataKey: 'oilVolumn'
+              dataKey: 'oilvolumn'
             },
             {
               width: 100,
               label: '客户电话',
-              dataKey: 'customerPhoneNo'
+              dataKey: 'customerphoneno'
             },
             {
               width: 100,
               label: '技师姓名',
-              dataKey: 'masterName'
+              dataKey: 'mastername'
             },
             {
               width: 200,
               label: '下单时间',
-              dataKey: 'orderDate'
+              dataKey: 'orderdate'
             },
           ]}
         />

@@ -5,6 +5,8 @@ import Home from "./modules/admin/Home";
 import Page1 from "./modules/admin/Page1";
 import Page2 from "./modules/admin/Page2";
 import Page3 from "./modules/admin/Page3";
+
+import Form from "./modules/service/Demo";
 import OrderList from "./modules/admin/OrderList";
 // import SignIn from "./modules/admin/Sign-In";
 
@@ -13,7 +15,7 @@ class Router extends React.Component {
   render() {
     return (
       <Routes>
-        <Route path="/" element={<App/>} />
+        <Route path="/" element={<Form/>} />
         <Route path="app" element={<App/>} />
         <Route path="admin" element={<OrderList/>} />
         <Route path="home" element={<Home/>} />
