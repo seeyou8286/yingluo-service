@@ -47,6 +47,7 @@ const styles = ({ theme }) => ({
 });
 
 class MuiVirtualizedTable extends React.PureComponent {
+
   static defaultProps = {
     headerHeight: 48,
     rowHeight: 48,
@@ -153,65 +154,80 @@ MuiVirtualizedTable.propTypes = {
 
 const VirtualizedTable = styled(MuiVirtualizedTable)(styles);
 
-// ---
 
-const sample = [
-  ['Frozen yoghurt', 159, 6.0, 24, 4.0],
-  ['Ice cream sandwich', 237, 9.0, 37, 4.3],
-  ['Eclair', 262, 16.0, 24, 6.0],
-  ['Cupcake', 305, 3.7, 67, 4.3],
-  ['Gingerbread', 356, 16.0, 49, 3.9],
-];
+export default class  OrderList extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {data: []};
+  }
 
-function createData(id, dessert, calories, fat, carbs, protein) {
-  return { id, dessert, calories, fat, carbs, protein };
-}
 
-const rows = [];
+  componentDidMount() {
+    fetch("https://lispa.live/info")
+    .then(response=> response.json())
+    .then(datejson=>{
+      this.setState({data:datejson});})
+  }
 
-for (let i = 0; i < 200; i += 1) {
-  const randomSelection = sample[Math.floor(Math.random() * sample.length)];
-  rows.push(createData(i, ...randomSelection));
-}
 
-export default function OrderList() {
-  return (
-    <Paper style={{ height: 1000, width: '100%' }}>
-      <VirtualizedTable
-        rowCount={rows.length}
-        rowGetter={({ index }) => rows[index]}
-        columns={[
-          {
-            width: 200,
-            label: 'Dessert',
-            dataKey: 'dessert',
-          },
-          {
-            width: 120,
-            label: 'Calories\u00A0(g)',
-            dataKey: 'calories',
-            numeric: true,
-          },
-          {
-            width: 120,
-            label: 'Fat\u00A0(g)',
-            dataKey: 'fat',
-            numeric: true,
-          },
-          {
-            width: 120,
-            label: 'Carbs\u00A0(g)',
-            dataKey: 'carbs',
-            numeric: true,
-          },
-          {
-            width: 120,
-            label: 'Protein\u00A0(g)',
-            dataKey: 'protein',
-            numeric: true,
-          },
-        ]}
-      />
-    </Paper>
-  );
+
+
+  render(){
+    return (
+      <Paper style={{ height: 800, width: '100%' }}>
+        <VirtualizedTable
+          rowCount={this.state.data.length}
+          rowGetter={({ index }) => this.state.data[index]}
+          columns={[
+            {
+              width: 80,
+              label: '序号',
+              dataKey: 'id',
+            },
+            {
+              width: 100,
+              label: '项目',
+              dataKey: 'item'
+            },
+            {
+              width: 100,
+              label: '精油选择',
+              dataKey: 'oilType'
+            },
+            {
+              width: 100,
+              label: '受力程度',
+              dataKey: 'strength'
+            },
+            {
+              width: 100,
+              label: '精油使用量',
+              dataKey: 'oilVolumn'
+            },
+            {
+              width: 100,
+              label: '精油使用量',
+              dataKey: 'oilVolumn'
+            },
+            {
+              width: 100,
+              label: '客户电话',
+              dataKey: 'customerPhoneNo'
+            },
+            {
+              width: 100,
+              label: '技师姓名',
+              dataKey: 'masterName'
+            },
+            {
+              width: 200,
+              label: '下单时间',
+              dataKey: 'orderDate'
+            },
+          ]}
+        />
+      </Paper>
+    );
+  }
+  
 }
