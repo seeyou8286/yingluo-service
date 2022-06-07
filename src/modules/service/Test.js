@@ -11,7 +11,7 @@ var sectionStyle = {
 };
 
 const defaultValues = {
-  items: []
+  items: [false,true,false]
 };
 
 function App() {
@@ -20,6 +20,14 @@ function App() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(formValues);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
   };
 
   return (
@@ -31,19 +39,19 @@ function App() {
               <FormGroup>
                 <FormControlLabel
                   control={
-                    <Checkbox sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }} />
+                    <Checkbox checked={formValues.items[0]} onChange={handleInputChange} sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }} />
                   }
                   label="大阪樱花【店铺特色】      90分钟       588元"
                 />
                 <FormControlLabel
                   control={
-                    <Checkbox sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }} />
+                    <Checkbox checked={formValues.items[1]} onChange={handleInputChange} sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }} />
                   }
                   label="大阪樱花【店铺特色】      90分钟       588元"
                 />
                 <FormControlLabel
                   control={
-                    <Checkbox sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }} />
+                    <Checkbox checked={formValues.items[2]} onChange={handleInputChange} sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }} />
                   }
                   label="大阪樱花【店铺特色】      90分钟       588元"
                 />
