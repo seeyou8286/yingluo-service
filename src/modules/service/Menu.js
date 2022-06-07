@@ -1,11 +1,18 @@
 import '../../App.css';
 import React from 'react';
-import ServiceOrderPic from '../../service.jpeg'; 
+import ServiceOrderPic from '../../assets/service-clean.jpeg'; 
+
+var sectionStyle = {
+  backgroundImage: `url(${ServiceOrderPic})`,
+};
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <div className="App-header">
+        <div style={sectionStyle}>
+
+        </div>
         <img src={ServiceOrderPic} />
         {/* <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -17,8 +24,8 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
-        </a> */}
-      </header>
+        </a>  */}
+      </div>
     </div>
   );
 }

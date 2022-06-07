@@ -1,12 +1,13 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import App from "./modules/service/App";
+import Menu from "./modules/service/Menu";
+import Test from "./modules/service/Test";
 import Home from "./modules/admin/Home";
 import Page1 from "./modules/admin/Page1";
 import Page2 from "./modules/admin/Page2";
 import Page3 from "./modules/admin/Page3";
 
-import Form from "./modules/service/Demo";
+import Demo from "./modules/service/Demo";
 import OrderList from "./modules/admin/OrderList";
 // import SignIn from "./modules/admin/Sign-In";
 
@@ -15,9 +16,10 @@ class Router extends React.Component {
   render() {
     return (
       <Routes>
-        <Route path="/" element={<Form/>} />
-        <Route path="app" element={<App/>} />
-        <Route path="admin" element={<OrderList/>} />
+        <Route path="/test" element={<Test/>} />
+        <Route path="/demo" element={<Demo/>} />
+        <Route path="/menu" element={<Menu/>} />
+        <Route path="/backend" element={<OrderList/>} />
         <Route path="home" element={<Home/>} />
         <Route path="/Page1" element={<Page1/>} />
         <Route path="/Page2" element={<Page2/>} />
