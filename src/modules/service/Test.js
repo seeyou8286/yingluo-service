@@ -14,9 +14,12 @@ const defaultValues = {
   item1: false,
   item2: false,
   item3: false,
-  featurn1: false,
-  featurn2: false,
-  featurn3: false
+  feature1: false,
+  feature2: false,
+  feature3: false,
+  oil1: false,
+  oil2: false,
+  oil3: false
 };
 
 function App() {
@@ -37,12 +40,9 @@ function App() {
 
   const handleSingleInput = (e) => {
     const { name, checked } = e.target;
-    formValues.featurn1=false;
-    formValues.featurn2=false;
-    formValues.featurn3=false;
-    // setFormValues(formValues.featurn1,false);
-    // setFormValues(formValues.featurn2,false)
-    // setFormValues(formValues.featurn3,false)
+    formValues.oil1=false;
+    formValues.oil2=false;
+    formValues.oil3=false;
     setFormValues({
       ...formValues,
       [name]: checked,
@@ -78,28 +78,49 @@ function App() {
             </div>
           </div>
           <div className="workingArea">
-            <div>
+          <div style={{paddingTop:'80px'}}>
                 <FormControlLabel
                   control={
-                    <Checkbox name="feature1" checked={formValues.featurn1} onChange={handleSingleInput} sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }} />
+                    <Checkbox name="feature1" checked={formValues.feature1} onChange={handleInputChange} sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }} />
                   }
-                  label="大阪樱花【店铺特色】      90分钟       588元"
+                  label="富士山下【店铺特色】      90分钟       588元"
                 />
                 <FormControlLabel
                   control={
-                    <Checkbox name="feature2"  checked={formValues.feature2} onChange={handleSingleInput} sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }} />
+                    <Checkbox name="feature2"  checked={formValues.feature2} onChange={handleInputChange} sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }} />
                   }
-                  label="大阪樱花【店铺特色】      90分钟       588元"
+                  label="富士山下【店铺特色】      90分钟       588元"
                 />
                 <FormControlLabel
                   control={
-                    <Checkbox name="feature3"  checked={formValues.feature3} onChange={handleSingleInput} sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }} />
+                    <Checkbox name="feature3"  checked={formValues.feature3} onChange={handleInputChange} sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }} />
                   }
-                  label="大阪樱花【店铺特色】      90分钟       588元"
+                  label="富士山下【店铺特色】      90分钟       588元"
                 />
             </div>
           </div>
-          <div className="inner"></div>
+          <div className="workingArea">
+            <div>
+                <FormControlLabel
+                  control={
+                    <Checkbox name="oil1" checked={formValues.oil1} onChange={handleSingleInput} sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }} />
+                  }
+                  label="精油1      90分钟       588元"
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox name="oil2"  checked={formValues.oil2} onChange={handleSingleInput} sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }} />
+                  }
+                  label="精油3      90分钟       588元"
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox name="oil3"  checked={formValues.oil3} onChange={handleSingleInput} sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }} />
+                  }
+                  label="精油3      90分钟       588元"
+                />
+            </div>
+          </div>
         </div>
         <div className="right">
           <div className="inner"></div>
