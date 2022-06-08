@@ -28,6 +28,8 @@ const Form = () => {
       [name]: value,
     });
   };
+
+  
   const handleSliderChange = (name) => (e, value) => {
     setFormValues({
       ...formValues,
