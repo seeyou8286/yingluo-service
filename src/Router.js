@@ -16,17 +16,15 @@ class Router extends React.Component {
   render() {
     return (
       <Routes>
-        <Route path="/test" element={<Test/>} />
-        <Route path="/demo" element={<Demo/>} />
-        <Route path="/menu" element={<Menu/>} />
-        <Route path="/backend" element={<OrderList/>} />
+        <Route path="test" element={<Test/>} />
+        <Route path="demo" element={<Demo/>} />
+        <Route path="menu" element={<Menu/>} />
+        <Route path="backend" element={<OrderList/>} />
         <Route path="home" element={<Home/>} />
-        <Route path="/Page1" element={<Page1/>} />
-        <Route path="/Page2" element={<Page2/>} />
-        <Route path="/Page3" element={<Page3/>} />
+        <Route path="Page1" element={<Page1/>} />
+        <Route path="Page2" element={<Page2/>} />
+        <Route path="Page3" element={<Page3/>} />
         {/* <Route path="signin" element={<SignIn/>} /> */}
-
-        
       </Routes>
     );
   }
