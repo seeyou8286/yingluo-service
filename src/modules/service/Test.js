@@ -1,6 +1,6 @@
 import "../../App.css";
 import React, { useState } from "react";
-import ServiceOrderPic from "../../assets/service-clean-resize.jpeg";
+import ServiceOrderPic from "../../assets/service-clean.jpeg";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
@@ -95,8 +95,8 @@ function App() {
               />
             </div>
           </div>
-          <div className="workingArea">
-            <div style={{ paddingTop: "80px" }}>
+          <div className="workingArea2">
+            <div style={{ paddingTop: "20px" }}>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -134,7 +134,7 @@ function App() {
           </div>
           <div className="workingArea">
             <div>
-              <FormControlLabel
+              <div><FormControlLabel
                 control={
                   <Checkbox
                     name="oil1"
@@ -144,8 +144,8 @@ function App() {
                   />
                 }
                 label="精油1      90分钟       588元"
-              />
-              <FormControlLabel
+              /></div>
+              <div><FormControlLabel
                 control={
                   <Checkbox
                     name="oil2"
@@ -155,7 +155,8 @@ function App() {
                   />
                 }
                 label="精油3      90分钟       588元"
-              />
+              /></div>
+              <div>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -167,6 +168,8 @@ function App() {
                 }
                 label="精油3      90分钟       588元"
               />
+              </div>
+              
             </div>
             <div className="lastRow">
               <div style={{ width: "50%" }}>
@@ -351,7 +354,7 @@ function App() {
             />
           </div>
           <div className="inner">
-            <div> 充值优惠</div>
+            <div style={{paddingTop:'20px'}}> 充值优惠</div>
             <FormControlLabel
               control={
                 <Checkbox
@@ -399,7 +402,7 @@ function App() {
               defaultValue="客户姓名"
             />
             <TextField required id="outlined-required" defaultValue="理疗师" />
-            <div style={{ textAlign: "right", paddingTop: "50px" }}>
+            <div style={{ textAlign: "right", paddingTop: "10px" }}>
               <Button variant="contained" color="primary" type="submit">
                 提交
               </Button>
