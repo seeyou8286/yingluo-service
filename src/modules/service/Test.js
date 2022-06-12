@@ -25,6 +25,13 @@ const defaultValues = {
   topup8000: false,
   topup5000: false,
   topup3000: false,
+  source1:false,
+  source2:false,
+  source3:false,
+  source4:false,
+  source5:false,
+  source6:false,
+  source7:false
 };
 
 function App() {
@@ -177,9 +184,9 @@ function App() {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        name="oil1"
-                        checked={formValues.oil1}
-                        onChange={handleSingleInput}
+                        name="strength1"
+                        checked={formValues.strength1}
+                        onChange={handleInputChange}
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
                       />
                     }
@@ -190,9 +197,9 @@ function App() {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        name="oil1"
-                        checked={formValues.oil1}
-                        onChange={handleSingleInput}
+                        name="strength2"
+                        checked={formValues.strength2}
+                        onChange={handleInputChange}
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
                       />
                     }
@@ -203,9 +210,9 @@ function App() {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        name="oil1"
-                        checked={formValues.oil1}
-                        onChange={handleSingleInput}
+                        name="strength3"
+                        checked={formValues.strength3}
+                        onChange={handleInputChange}
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
                       />
                     }
@@ -218,9 +225,9 @@ function App() {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        name="oil1"
-                        checked={formValues.oil1}
-                        onChange={handleSingleInput}
+                        name="oilvolumn1"
+                        checked={formValues.oilvolumn1}
+                        onChange={handleInputChange}
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
                       />
                     }
@@ -231,9 +238,9 @@ function App() {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        name="oil1"
-                        checked={formValues.oil1}
-                        onChange={handleSingleInput}
+                        name="oilvolumn2"
+                        checked={formValues.oilvolumn2}
+                        onChange={handleInputChange}
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
                       />
                     }
@@ -244,9 +251,9 @@ function App() {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        name="oil1"
-                        checked={formValues.oil1}
-                        onChange={handleSingleInput}
+                        name="oilvolumn3"
+                        checked={formValues.oilvolumn3}
+                        onChange={handleInputChange}
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
                       />
                     }
@@ -265,8 +272,8 @@ function App() {
               control={
                 <Checkbox
                   name="source1"
-                  checked={formValues.oil3}
-                  onChange={handleSingleInput}
+                  checked={formValues.source1}
+                  onChange={handleInputChange}
                   sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                 />
               }
@@ -276,9 +283,9 @@ function App() {
               className="vertical"
               control={
                 <Checkbox
-                  name="source1"
-                  checked={formValues.oil3}
-                  onChange={handleSingleInput}
+                  name="source2"
+                  checked={formValues.source2}
+                  onChange={handleInputChange}
                   color="success"
                   sx={{
                     color: green[800],
@@ -295,9 +302,9 @@ function App() {
               className="vertical"
               control={
                 <Checkbox
-                  name="source1"
-                  checked={formValues.oil3}
-                  onChange={handleSingleInput}
+                  name="source3"
+                  checked={formValues.source3}
+                  onChange={handleInputChange}
                   sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                 />
               }
@@ -307,9 +314,9 @@ function App() {
               className="vertical"
               control={
                 <Checkbox
-                  name="source1"
-                  checked={formValues.oil3}
-                  onChange={handleSingleInput}
+                  name="source4"
+                  checked={formValues.source4}
+                  onChange={handleInputChange}
                   sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                 />
               }
@@ -320,9 +327,9 @@ function App() {
               className="vertical"
               control={
                 <Checkbox
-                  name="source1"
-                  checked={formValues.oil3}
-                  onChange={handleSingleInput}
+                  name="source5"
+                  checked={formValues.source5}
+                  onChange={handleInputChange}
                   sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                 />
               }
@@ -332,9 +339,9 @@ function App() {
               className="vertical"
               control={
                 <Checkbox
-                  name="source1"
-                  checked={formValues.oil3}
-                  onChange={handleSingleInput}
+                  name="source6"
+                  checked={formValues.source6}
+                  onChange={handleInputChange}
                   sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                 />
               }
@@ -344,9 +351,9 @@ function App() {
               className="vertical"
               control={
                 <Checkbox
-                  name="source1"
-                  checked={formValues.oil3}
-                  onChange={handleSingleInput}
+                  name="source7"
+                  checked={formValues.source7}
+                  onChange={handleInputChange}
                   sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                 />
               }
