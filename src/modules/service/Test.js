@@ -1,6 +1,6 @@
 import "../../App.css";
 import React, { useState } from "react";
-import ServiceOrderPic from "../../assets/service-clean.jpeg";
+import ServiceOrderPic from "../../assets/service-2.jpeg";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
@@ -13,25 +13,13 @@ var sectionStyle = {
 };
 
 const defaultValues = {
-  item1: false,
-  item2: false,
-  item3: false,
-  feature1: false,
-  feature2: false,
-  feature3: false,
-  oil1: false,
-  oil2: false,
-  oil3: false,
-  topup8000: false,
-  topup5000: false,
-  topup3000: false,
-  source1:false,
-  source2:false,
-  source3:false,
-  source4:false,
-  source5:false,
-  source6:false,
-  source7:false
+  item: [false,false,false],
+  feature:[false,false,false],
+  oiltype:[false,false,false],
+  topup:[false,false,false],
+  source:[false,false,false,false,false,false,false],
+  oilvolumn:[false,false,false],
+  strength: [false, false, false],
 };
 
 function App() {
@@ -50,14 +38,19 @@ function App() {
     });
   };
 
-  const handleSingleInput = (e) => {
+
+  const handleSingleInput = (e, index, size) => {
     const { name, checked } = e.target;
-    formValues.oil1 = false;
-    formValues.oil2 = false;
-    formValues.oil3 = false;
+    console.log(index);
+    console.log(formValues[name]);
+    let values = [];
+    for (var i = 0; i < size; i++) {
+      values[i] = false;
+    }
+    values[index] = checked;
     setFormValues({
       ...formValues,
-      [name]: checked,
+      [name]: values,
     });
   };
 
@@ -65,13 +58,13 @@ function App() {
     <form onSubmit={handleSubmit}>
       <div className="box" style={sectionStyle}>
         <div className="left">
-          <div className="workingArea">
-            <div className="padding">
+          <div className="leftpanel-1">
+            <div>
               <FormControlLabel
                 control={
                   <Checkbox
-                    name="item1"
-                    checked={formValues.item1}
+                    name="item"
+                    checked={formValues.item[0]}
                     onChange={handleInputChange}
                     sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
                   />
@@ -102,8 +95,8 @@ function App() {
               />
             </div>
           </div>
-          <div className="workingArea2">
-            <div style={{ paddingTop: "20px" }}>
+          <div className="leftpanel-2">
+            <div>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -139,44 +132,47 @@ function App() {
               />
             </div>
           </div>
-          <div className="workingArea">
+          <div className="leftpanel-3">
             <div>
-              <div><FormControlLabel
-                control={
-                  <Checkbox
-                    name="oil1"
-                    checked={formValues.oil1}
-                    onChange={handleSingleInput}
-                    sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
-                  />
-                }
-                label="精油1      90分钟       588元"
-              /></div>
-              <div><FormControlLabel
-                control={
-                  <Checkbox
-                    name="oil2"
-                    checked={formValues.oil2}
-                    onChange={handleSingleInput}
-                    sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
-                  />
-                }
-                label="精油3      90分钟       588元"
-              /></div>
               <div>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    name="oil3"
-                    checked={formValues.oil3}
-                    onChange={handleSingleInput}
-                    sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
-                  />
-                }
-                label="精油3      90分钟       588元"
-              />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      name="oil1"
+                      checked={formValues.oil1}
+                      onChange={handleSingleInput}
+                      sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
+                    />
+                  }
+                  label="精油1      90分钟       588元"
+                />
               </div>
-              
+              <div>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      name="oil2"
+                      checked={formValues.oil2}
+                      onChange={handleSingleInput}
+                      sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
+                    />
+                  }
+                  label="精油3      90分钟       588元"
+                />
+              </div>
+              <div>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      name="oil3"
+                      checked={formValues.oil3}
+                      onChange={handleSingleInput}
+                      sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
+                    />
+                  }
+                  label="精油3      90分钟       588元"
+                />
+              </div>
             </div>
             <div className="lastRow">
               <div style={{ width: "50%" }}>
@@ -184,9 +180,9 @@ function App() {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        name="strength1"
-                        checked={formValues.strength1}
-                        onChange={handleInputChange}
+                        name="strength"
+                        checked={formValues.strength[0]}
+                        onChange={(e) => handleSingleInput(e, "0", "3")}
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
                       />
                     }
@@ -197,9 +193,9 @@ function App() {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        name="strength2"
-                        checked={formValues.strength2}
-                        onChange={handleInputChange}
+                        name="strength"
+                        checked={formValues.strength[1]}
+                        onChange={(e) => handleSingleInput(e, "1", "3")}
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
                       />
                     }
@@ -210,9 +206,9 @@ function App() {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        name="strength3"
-                        checked={formValues.strength3}
-                        onChange={handleInputChange}
+                        name="strength"
+                        checked={formValues.strength[2]}
+                        onChange={(e) => handleSingleInput(e, "2", "3")}
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
                       />
                     }
@@ -225,9 +221,9 @@ function App() {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        name="oilvolumn1"
-                        checked={formValues.oilvolumn1}
-                        onChange={handleInputChange}
+                        name="oilvolumn"
+                        checked={formValues.oilvolumn[0]}
+                        onChange={(e) => handleSingleInput(e, "0", "3")}
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
                       />
                     }
@@ -238,9 +234,9 @@ function App() {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        name="oilvolumn2"
-                        checked={formValues.oilvolumn2}
-                        onChange={handleInputChange}
+                      name="oilvolumn"
+                      checked={formValues.oilvolumn[1]}
+                      onChange={(e) => handleSingleInput(e, "1", "3")}
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
                       />
                     }
@@ -251,9 +247,9 @@ function App() {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        name="oilvolumn3"
-                        checked={formValues.oilvolumn3}
-                        onChange={handleInputChange}
+                      name="oilvolumn"
+                      checked={formValues.oilvolumn[2]}
+                      onChange={(e) => handleSingleInput(e, "2", "3")}
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
                       />
                     }
@@ -361,7 +357,7 @@ function App() {
             />
           </div>
           <div className="inner">
-            <div style={{paddingTop:'20px'}}> 充值优惠</div>
+            <div style={{ paddingTop: "20px" }}> 充值优惠</div>
             <FormControlLabel
               control={
                 <Checkbox
