@@ -7,18 +7,22 @@ import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { pink, green } from "@mui/material/colors";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import InputLabel from '@mui/material/InputLabel';
 
 var sectionStyle = {
   backgroundImage: `url(${ServiceOrderPic})`,
 };
 
 const defaultValues = {
-  item: [false,false,false],
-  feature:[false,false,false],
-  oiltype:[false,false,false],
-  topup:[false,false,false],
-  source:[false,false,false,false,false,false,false],
-  oilvolumn:[false,false,false],
+  item: [false, false, false, false],
+  feature: [false, false, false],
+  oiltype: [false, false, false],
+  topup: [false, false, false],
+  source: [false, false, false, false, false, false, false],
+  oilvolumn: [false, false, false],
   strength: [false, false, false],
 };
 
@@ -37,12 +41,18 @@ function App() {
       [name]: checked,
     });
   };
-
+  const handleMultiInput = (e, index) => {
+    const { name, checked } = e.target;
+    let values = formValues.item;
+    values[index] = checked;
+    setFormValues({
+      ...formValues,
+      [name]: values,
+    });
+  };
 
   const handleSingleInput = (e, index, size) => {
     const { name, checked } = e.target;
-    console.log(index);
-    console.log(formValues[name]);
     let values = [];
     for (var i = 0; i < size; i++) {
       values[i] = false;
@@ -60,39 +70,170 @@ function App() {
         <div className="left">
           <div className="leftpanel-1">
             <div>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    name="item"
-                    checked={formValues.item[0]}
+              <div className="rowDirection">
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      name="item"
+                      checked={formValues.item[0]}
+                      onChange={(e) => handleMultiInput(e, "0", "4")}
+                      sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                    />
+                  }
+                  label="采耳头疗【店铺招牌】      45分钟"
+                />
+                <p className="price">188元</p>
+                <FormControl sx={{ pl:5,pt:1,  m: 0, minWidth: 5 }} size="small">
+                <InputLabel sx={{fontSize:10, pl:5}}>数量</InputLabel>
+                  <Select sx={{ fontSize:10}}
+                    label="quantity"
+                    value="1"
                     onChange={handleInputChange}
-                    sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
-                  />
-                }
-                label="大阪樱花【店铺特色】      90分钟       588元"
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    name="item2"
-                    checked={formValues.item2}
+                  >
+                    <MenuItem key="1" value="1">
+                      1
+                    </MenuItem>
+                    <MenuItem key="2" value="2">
+                      2
+                    </MenuItem>
+                    <MenuItem key="3 " value="3">
+                      3
+                    </MenuItem>
+                    <MenuItem key="4 " value="4">
+                      4
+                    </MenuItem>
+                    <MenuItem key="5 " value="5">
+                      5
+                    </MenuItem>
+                    <MenuItem key="6 " value="6">
+                      6
+                    </MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
+              <div className="rowDirection">
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      name="item"
+                      checked={formValues.item[1]}
+                      onChange={(e) => handleMultiInput(e, "1", "4")}
+                      sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                    />
+                  }
+                  label="精油SPA【精油舒压】      60分钟"
+                />
+                <p className="price">288元</p>
+                <FormControl sx={{ pl:5, pt:1, m: 0, minWidth: 5 }} size="small">
+                <InputLabel sx={{fontSize:10, pl:5}}>数量</InputLabel>
+                  <Select sx={{ fontSize:10}}
+                    label="quantity"
+                    value="1"
                     onChange={handleInputChange}
-                    sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
-                  />
-                }
-                label="大阪樱花【店铺特色】      90分钟       588元"
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    name="item3"
-                    checked={formValues.item3}
+                  >
+                    <MenuItem key="1" value="1">
+                      1
+                    </MenuItem>
+                    <MenuItem key="2" value="2">
+                      2
+                    </MenuItem>
+                    <MenuItem key="3 " value="3">
+                      3
+                    </MenuItem>
+                    <MenuItem key="4 " value="4">
+                      4
+                    </MenuItem>
+                    <MenuItem key="5 " value="5">
+                      5
+                    </MenuItem>
+                    <MenuItem key="6 " value="6">
+                      6
+                    </MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
+              <div className="rowDirection">
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      name="item"
+                      checked={formValues.item[2]}
+                      onChange={(e) => handleMultiInput(e, "2", "4")}
+                      sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                    />
+                  }
+                  label="肝胆排毒【熬夜必点】      90分钟"
+                />
+                <p className="price">488元</p>
+                <FormControl sx={{ pl:5,pt:1,  m: 0, minWidth: 5 }} size="small">
+                <InputLabel sx={{fontSize:10, pl:5}}>数量</InputLabel>
+                  <Select sx={{ fontSize:10}}
+                    label="quantity"
+                    value="1"
                     onChange={handleInputChange}
-                    sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
-                  />
-                }
-                label="大阪樱花【店铺特色】      90分钟       588元"
-              />
+                  >
+                    <MenuItem key="1" value="1">
+                      1
+                    </MenuItem>
+                    <MenuItem key="2" value="2">
+                      2
+                    </MenuItem>
+                    <MenuItem key="3 " value="3">
+                      3
+                    </MenuItem>
+                    <MenuItem key="4 " value="4">
+                      4
+                    </MenuItem>
+                    <MenuItem key="5 " value="5">
+                      5
+                    </MenuItem>
+                    <MenuItem key="6 " value="6">
+                      6
+                    </MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
+              <div className="rowDirection">
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      name="item"
+                      checked={formValues.item[3]}
+                      onChange={(e) => handleMultiInput(e, "3", "4")}
+                      sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                    />
+                  }
+                  label="淋巴排毒【懒人必点】      90分钟"
+                />
+                <p className="price">488元</p>
+                <FormControl sx={{ pl:5, pt:1, m: 0, minWidth: 5, fontSize:10}} size="small">
+                <InputLabel sx={{fontSize:10, pl:5}}>数量</InputLabel>
+                  <Select sx={{ fontSize:10}}
+                    label="quantity"
+                    value="1"
+                    onChange={handleInputChange}
+                  >
+                    <MenuItem key="1" value="1">
+                      1
+                    </MenuItem>
+                    <MenuItem key="2" value="2">
+                      2
+                    </MenuItem>
+                    <MenuItem key="3 " value="3">
+                      3
+                    </MenuItem>
+                    <MenuItem key="4 " value="4">
+                      4
+                    </MenuItem>
+                    <MenuItem key="5 " value="5">
+                      5
+                    </MenuItem>
+                    <MenuItem key="6 " value="6">
+                      6
+                    </MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
             </div>
           </div>
           <div className="leftpanel-2">
@@ -103,7 +244,7 @@ function App() {
                     name="feature1"
                     checked={formValues.feature1}
                     onChange={handleInputChange}
-                    sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
+                    sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                   />
                 }
                 label="富士山下【店铺特色】      90分钟       588元"
@@ -114,7 +255,7 @@ function App() {
                     name="feature2"
                     checked={formValues.feature2}
                     onChange={handleInputChange}
-                    sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
+                    sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                   />
                 }
                 label="富士山下【店铺特色】      90分钟       588元"
@@ -125,7 +266,18 @@ function App() {
                     name="feature3"
                     checked={formValues.feature3}
                     onChange={handleInputChange}
-                    sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
+                    sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                  />
+                }
+                label="富士山下【店铺特色】      90分钟       588元"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    name="feature3"
+                    checked={formValues.feature3}
+                    onChange={handleInputChange}
+                    sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                   />
                 }
                 label="富士山下【店铺特色】      90分钟       588元"
@@ -141,7 +293,7 @@ function App() {
                       name="oil1"
                       checked={formValues.oil1}
                       onChange={handleSingleInput}
-                      sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
+                      sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                     />
                   }
                   label="精油1      90分钟       588元"
@@ -154,7 +306,7 @@ function App() {
                       name="oil2"
                       checked={formValues.oil2}
                       onChange={handleSingleInput}
-                      sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
+                      sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                     />
                   }
                   label="精油3      90分钟       588元"
@@ -167,7 +319,33 @@ function App() {
                       name="oil3"
                       checked={formValues.oil3}
                       onChange={handleSingleInput}
-                      sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
+                      sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                    />
+                  }
+                  label="精油3      90分钟       588元"
+                />
+              </div>
+              <div>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      name="oil3"
+                      checked={formValues.oil3}
+                      onChange={handleSingleInput}
+                      sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                    />
+                  }
+                  label="精油3      90分钟       588元"
+                />
+              </div>
+              <div>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      name="oil3"
+                      checked={formValues.oil3}
+                      onChange={handleSingleInput}
+                      sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                     />
                   }
                   label="精油3      90分钟       588元"
@@ -183,7 +361,7 @@ function App() {
                         name="strength"
                         checked={formValues.strength[0]}
                         onChange={(e) => handleSingleInput(e, "0", "3")}
-                        sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
+                        sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
                     label="大力"
@@ -196,7 +374,7 @@ function App() {
                         name="strength"
                         checked={formValues.strength[1]}
                         onChange={(e) => handleSingleInput(e, "1", "3")}
-                        sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
+                        sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
                     label="适中"
@@ -209,7 +387,7 @@ function App() {
                         name="strength"
                         checked={formValues.strength[2]}
                         onChange={(e) => handleSingleInput(e, "2", "3")}
-                        sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
+                        sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
                     label="小力"
@@ -224,7 +402,7 @@ function App() {
                         name="oilvolumn"
                         checked={formValues.oilvolumn[0]}
                         onChange={(e) => handleSingleInput(e, "0", "3")}
-                        sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
+                        sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
                     label="加大量"
@@ -234,10 +412,10 @@ function App() {
                   <FormControlLabel
                     control={
                       <Checkbox
-                      name="oilvolumn"
-                      checked={formValues.oilvolumn[1]}
-                      onChange={(e) => handleSingleInput(e, "1", "3")}
-                        sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
+                        name="oilvolumn"
+                        checked={formValues.oilvolumn[1]}
+                        onChange={(e) => handleSingleInput(e, "1", "3")}
+                        sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
                     label="加大"
@@ -247,10 +425,10 @@ function App() {
                   <FormControlLabel
                     control={
                       <Checkbox
-                      name="oilvolumn"
-                      checked={formValues.oilvolumn[2]}
-                      onChange={(e) => handleSingleInput(e, "2", "3")}
-                        sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
+                        name="oilvolumn"
+                        checked={formValues.oilvolumn[2]}
+                        onChange={(e) => handleSingleInput(e, "2", "3")}
+                        sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
                     label="正常"

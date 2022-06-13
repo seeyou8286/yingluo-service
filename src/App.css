@@ -17,8 +17,21 @@
   flex-direction: row;
 }
 
+.price {
+  color:red;
+  font-size: 20px;
+  margin:0px;
+  padding-top: 10px;
+}
+
 .lastRow {
-  padding-top: 50px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap:nowrap;
+}
+
+.rowDirection {
   display: flex;
   flex-direction: row;
   flex-wrap:nowrap;

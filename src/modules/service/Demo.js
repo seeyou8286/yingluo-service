@@ -10,6 +10,9 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Slider from "@mui/material/Slider";
 import Button from "@mui/material/Button";
+
+
+
 const defaultValues = {
   name: "",
   age: 0,
@@ -29,7 +32,7 @@ const Form = () => {
     });
   };
 
-  
+
   const handleSliderChange = (name) => (e, value) => {
     setFormValues({
       ...formValues,
