@@ -22,7 +22,13 @@
   font-size: 20px;
   margin:0px;
   padding-top: 10px;
+  width: 20%;
 }
+
+.item {
+  width: 64%;
+}
+
 
 .lastRow {
   padding-top: 20px;
@@ -36,6 +42,7 @@
   flex-direction: row;
   flex-wrap:nowrap;
 }
+
 
 .left {
   width: 65%;
