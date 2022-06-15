@@ -18,8 +18,9 @@ var sectionStyle = {
 
 const defaultValues = {
   item: [false, false, false, false],
-  itemQuantity:[1,1,1,1],
-  feature: [false, false, false],
+  itemQuantity: [1, 1, 1, 1],
+  feature: [false, false, false,false],
+  featureQuantity: [1, 1, 1, 1],
   oiltype: [false, false, false],
   topup: [false, false, false],
   source: [false, false, false, false, false, false, false],
@@ -30,9 +31,14 @@ const defaultValues = {
 function App() {
   const [formValues, setFormValues] = useState(defaultValues);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     console.log(formValues);
+    fetch("http://localhost:3000/submit", {
+      method: 'post',
+      headers: {'Content-Type': 'application/json; charset=utf-8'},
+      body:JSON.stringify(formValues)
+    })
   };
 
   const handleInputChange = (e) => {
@@ -55,7 +61,7 @@ function App() {
   const handleMultipleInputValue = (e, index, item) => {
     const { name, value } = e.target;
     let values = formValues[name];
-    if(formValues[item][index] == true){
+    if (formValues[item][index] == true) {
       values[index] = value;
     }
     setFormValues({
@@ -85,118 +91,118 @@ function App() {
             <div>
               <div className="rowDirection">
                 <div className="item">
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      name="item"
-                      checked={formValues.item[0]}
-                      onChange={(e) => handleMultiInput(e, "0", "4")}
-                      sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
-                    />
-                  }
-                  label="采耳头疗【店铺招牌】      45分钟"
-                />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        name="item"
+                        checked={formValues.item[0]}
+                        onChange={(e) => handleMultiInput(e, "0", "4")}
+                        sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                      />
+                    }
+                    label="采耳头疗【店铺招牌】      45分钟"
+                  />
                 </div>
                 <p className="price">188元</p>
-                  <FormControl
-                    sx={{pr: 0, pt:1,m: 0, minWidth: 5 }}
-                    size="small"
+                <FormControl
+                  sx={{ pr: 0, pt: 1, m: 0, minWidth: 5 }}
+                  size="small"
+                >
+                  <InputLabel sx={{ fontSize: 10, pt: 1 }}>数量</InputLabel>
+                  <Select
+                    sx={{ fontSize: 10 }}
+                    name="itemQuantity"
+                    value={formValues.itemQuantity[0]}
+                    onChange={(e) => handleMultipleInputValue(e, "0", "item")}
                   >
-                    <InputLabel sx={{fontSize:10,pt:1}}>数量</InputLabel> 
-                    <Select
-                      sx={{ fontSize: 10 }}
-                      name="itemQuantity"
-                      value={formValues.itemQuantity[0]}
-                      onChange={(e) => handleMultipleInputValue(e, "0", "item")}
-                    >
-                      <MenuItem key="1" value="1">
-                        1
-                      </MenuItem>
-                      <MenuItem key="2" value="2">
-                        2
-                      </MenuItem>
-                      <MenuItem key="3 " value="3">
-                        3
-                      </MenuItem>
-                      <MenuItem key="4 " value="4">
-                        4
-                      </MenuItem>
-                      <MenuItem key="5 " value="5">
-                        5
-                      </MenuItem>
-                      <MenuItem key="6 " value="6">
-                        6
-                      </MenuItem>
-                    </Select>
-                  </FormControl>
+                    <MenuItem key="1" value="1">
+                      1
+                    </MenuItem>
+                    <MenuItem key="2" value="2">
+                      2
+                    </MenuItem>
+                    <MenuItem key="3 " value="3">
+                      3
+                    </MenuItem>
+                    <MenuItem key="4 " value="4">
+                      4
+                    </MenuItem>
+                    <MenuItem key="5 " value="5">
+                      5
+                    </MenuItem>
+                    <MenuItem key="6 " value="6">
+                      6
+                    </MenuItem>
+                  </Select>
+                </FormControl>
               </div>
               <div className="rowDirection">
-              <div className="item">
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      name="item"
-                      checked={formValues.item[1]}
-                      onChange={(e) => handleMultiInput(e, "1", "4")}
-                      sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
-                    />
-                  }
-                  label="精油SPA【精油舒压】      60分钟"
-                />
+                <div className="item">
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        name="item"
+                        checked={formValues.item[1]}
+                        onChange={(e) => handleMultiInput(e, "1", "4")}
+                        sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                      />
+                    }
+                    label="精油SPA【精油舒压】      60分钟"
+                  />
                 </div>
                 <p className="price">288元</p>
-                  <FormControl
-                    sx={{ pr: 0, pt:1, m: 0, minWidth: 5 }}
-                    size="small"
+                <FormControl
+                  sx={{ pr: 0, pt: 1, m: 0, minWidth: 5 }}
+                  size="small"
+                >
+                  <InputLabel sx={{ fontSize: 10, pt: 1 }}>数量</InputLabel>
+                  <Select
+                    sx={{ fontSize: 10 }}
+                    name="itemQuantity"
+                    value={formValues.itemQuantity[1]}
+                    onChange={(e) => handleMultipleInputValue(e, "1", "item")}
                   >
-                    <InputLabel sx={{fontSize:10,pt:1}}>数量</InputLabel>
-                    <Select
-                      sx={{ fontSize: 10 }}
-                      name="itemQuantity"
-                      value={formValues.itemQuantity[1]}
-                      onChange={(e) => handleMultipleInputValue(e, "1", "item")}
-                    >
-                      <MenuItem key="1" value="1">
-                        1
-                      </MenuItem>
-                      <MenuItem key="2" value="2">
-                        2
-                      </MenuItem>
-                      <MenuItem key="3 " value="3">
-                        3
-                      </MenuItem>
-                      <MenuItem key="4 " value="4">
-                        4
-                      </MenuItem>
-                      <MenuItem key="5 " value="5">
-                        5
-                      </MenuItem>
-                      <MenuItem key="6 " value="6">
-                        6
-                      </MenuItem>
-                    </Select>
-                  </FormControl>
+                    <MenuItem key="1" value="1">
+                      1
+                    </MenuItem>
+                    <MenuItem key="2" value="2">
+                      2
+                    </MenuItem>
+                    <MenuItem key="3 " value="3">
+                      3
+                    </MenuItem>
+                    <MenuItem key="4 " value="4">
+                      4
+                    </MenuItem>
+                    <MenuItem key="5 " value="5">
+                      5
+                    </MenuItem>
+                    <MenuItem key="6 " value="6">
+                      6
+                    </MenuItem>
+                  </Select>
+                </FormControl>
               </div>
               <div className="rowDirection">
-              <div className="item">
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      name="item"
-                      checked={formValues.item[2]}
-                      onChange={(e) => handleMultiInput(e, "2", "4")}
-                      sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
-                    />
-                  }
-                  label="肝胆排毒【熬夜必点】      90分钟"
-                />
+                <div className="item">
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        name="item"
+                        checked={formValues.item[2]}
+                        onChange={(e) => handleMultiInput(e, "2", "4")}
+                        sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                      />
+                    }
+                    label="肝胆排毒【熬夜必点】      90分钟"
+                  />
                 </div>
                 <p className="price">488元</p>
                 <FormControl
                   sx={{ pl: 0, pt: 1, m: 0, minWidth: 5 }}
                   size="small"
                 >
-                  <InputLabel sx={{fontSize:10,pt:1}}>数量</InputLabel>
+                  <InputLabel sx={{ fontSize: 10, pt: 1 }}>数量</InputLabel>
                   <Select
                     sx={{ fontSize: 10 }}
                     name="itemQuantity"
@@ -226,24 +232,24 @@ function App() {
               </div>
               <div className="rowDirection">
                 <div className="item">
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      name="item"
-                      checked={formValues.item[3]}
-                      onChange={(e) => handleMultiInput(e, "3", "4")}
-                      sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
-                    />
-                  }
-                  label="淋巴排毒【懒人必点】      90分钟"
-                />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        name="item"
+                        checked={formValues.item[3]}
+                        onChange={(e) => handleMultiInput(e, "3", "4")}
+                        sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                      />
+                    }
+                    label="淋巴排毒【懒人必点】      90分钟"
+                  />
                 </div>
                 <p className="price">488元</p>
                 <FormControl
                   sx={{ pl: 0, pt: 1, m: 0, minWidth: 5, fontSize: 10 }}
                   size="small"
                 >
-                  <InputLabel sx={{fontSize:10,pt:1}}>数量</InputLabel>
+                  <InputLabel sx={{ fontSize: 10, pt: 1 }}>数量</InputLabel>
                   <Select
                     sx={{ fontSize: 10 }}
                     name="itemQuantity"
@@ -276,32 +282,32 @@ function App() {
 
           <div className="leftpanel-2">
             <div>
-            <div className="rowDirection">
+              <div className="rowDirection">
                 <div className="item">
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    name="feature"
-                    checked={formValues.feature[0]}
-                    onChange={(e) => handleMultiInput(e, "0")}
-                    sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        name="feature"
+                        checked={formValues.feature[0]}
+                        onChange={(e) => handleMultiInput(e, "0")}
+                        sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                      />
+                    }
+                    label="大阪樱花【店铺特色】      90分钟"
                   />
-                }
-                label="大阪樱花【店铺特色】      90分钟"
-              />
                 </div>
-              
-              <p className="price">588元</p>
-              <FormControl
+
+                <p className="price">588元</p>
+                <FormControl
                   sx={{ pl: 0, pt: 1, m: 0, minWidth: 5, fontSize: 10 }}
                   size="small"
                 >
-                  <InputLabel sx={{fontSize:10,pt:1}}>数量</InputLabel>
+                  <InputLabel sx={{ fontSize: 10, pt: 1 }}>数量</InputLabel>
                   <Select
                     sx={{ fontSize: 10 }}
-                    name="itemQuantity"
-                    value={formValues.itemQuantity[3]}
-                    onChange={(e) => handleMultipleInputValue(e, "3", "item")}
+                    name="featureQuantity"
+                    value={formValues.featureQuantity[0]}
+                    onChange={(e) => handleMultipleInputValue(e, "0", "feature")}
                   >
                     <MenuItem key="1" value="1">
                       1
@@ -323,79 +329,32 @@ function App() {
                     </MenuItem>
                   </Select>
                 </FormControl>
-            </div>
-            <div className="rowDirection">
-            <div className="item">
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    name="feature2"
-                    checked={formValues.feature2}
-                    onChange={handleInputChange}
-                    sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
-                  />
-                }
-                label="富士山下【女神奢宠】      100分钟"
-              />
               </div>
-              <p className="price">618元</p>
-              <FormControl
-                  sx={{ pl: 0, pt: 1, m: 0, minWidth: 5, fontSize: 10 }}
-                  size="small"
-                >
-                  <InputLabel sx={{fontSize:10,pt:1}}>数量</InputLabel>
-                  <Select
-                    sx={{ fontSize: 10 }}
-                    name="itemQuantity"
-                    value={formValues.itemQuantity[3]}
-                    onChange={(e) => handleMultipleInputValue(e, "3", "item")}
-                  >
-                    <MenuItem key="1" value="1">
-                      1
-                    </MenuItem>
-                    <MenuItem key="2" value="2">
-                      2
-                    </MenuItem>
-                    <MenuItem key="3 " value="3">
-                      3
-                    </MenuItem>
-                    <MenuItem key="4 " value="4">
-                      4
-                    </MenuItem>
-                    <MenuItem key="5 " value="5">
-                      5
-                    </MenuItem>
-                    <MenuItem key="6 " value="6">
-                      6
-                    </MenuItem>
-                  </Select>
-                </FormControl>
-            </div>
-            <div className="rowDirection">
-            <div className="item">
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    name="feature3"
-                    checked={formValues.feature3}
-                    onChange={handleInputChange}
-                    sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+              <div className="rowDirection">
+                <div className="item">
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        name="feature"
+                        checked={formValues.feature[1]}
+                        onChange={(e) => handleMultiInput(e, "1")}
+                        sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                      />
+                    }
+                    label="富士山下【女神奢宠】      100分钟"
                   />
-                }
-                label="京都礼遇【店铺爆款】      100分钟"
-              />
-              </div>
-              <p className="price">688元</p>
-              <FormControl
+                </div>
+                <p className="price">618元</p>
+                <FormControl
                   sx={{ pl: 0, pt: 1, m: 0, minWidth: 5, fontSize: 10 }}
                   size="small"
                 >
-                  <InputLabel sx={{fontSize:10,pt:1}}>数量</InputLabel>
+                  <InputLabel sx={{ fontSize: 10, pt: 1 }}>数量</InputLabel>
                   <Select
                     sx={{ fontSize: 10 }}
-                    name="itemQuantity"
-                    value={formValues.itemQuantity[3]}
-                    onChange={(e) => handleMultipleInputValue(e, "3", "item")}
+                    name="featureQuantity"
+                    value={formValues.featureQuantity[1]}
+                    onChange={(e) => handleMultipleInputValue(e, "1", "feature")}
                   >
                     <MenuItem key="1" value="1">
                       1
@@ -417,32 +376,32 @@ function App() {
                     </MenuItem>
                   </Select>
                 </FormControl>
-            </div>
-            <div className="rowDirection">
-            <div className="item">
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    name="feature3"
-                    checked={formValues.feature3}
-                    onChange={handleInputChange}
-                    sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+              </div>
+              <div className="rowDirection">
+                <div className="item">
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        name="feature"
+                        checked={formValues.feature[2]}
+                        onChange={(e) => handleMultiInput(e, "2")}
+                        sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                      />
+                    }
+                    label="京都礼遇【店铺爆款】      100分钟"
                   />
-                }
-                label="东京の热【男士尊享】      100分钟"
-              />
-              </div>
-              <p className="price">888元</p>
-              <FormControl
+                </div>
+                <p className="price">688元</p>
+                <FormControl
                   sx={{ pl: 0, pt: 1, m: 0, minWidth: 5, fontSize: 10 }}
                   size="small"
                 >
-                  <InputLabel sx={{fontSize:10,pt:1}}>数量</InputLabel>
+                  <InputLabel sx={{ fontSize: 10, pt: 1 }}>数量</InputLabel>
                   <Select
                     sx={{ fontSize: 10 }}
-                    name="itemQuantity"
-                    value={formValues.itemQuantity[3]}
-                    onChange={(e) => handleMultipleInputValue(e, "3", "item")}
+                    name="featureQuantity"
+                    value={formValues.featureQuantity[2]}
+                    onChange={(e) => handleMultipleInputValue(e, "2", "feature")}
                   >
                     <MenuItem key="1" value="1">
                       1
@@ -464,7 +423,54 @@ function App() {
                     </MenuItem>
                   </Select>
                 </FormControl>
-            </div>
+              </div>
+              <div className="rowDirection">
+                <div className="item">
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        name="feature"
+                        checked={formValues.feature[3]}
+                        onChange={(e) => handleMultiInput(e, "3")}
+                        sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                      />
+                    }
+                    label="东京の热【男士尊享】      100分钟"
+                  />
+                </div>
+                <p className="price">888元</p>
+                <FormControl
+                  sx={{ pl: 0, pt: 1, m: 0, minWidth: 5, fontSize: 10 }}
+                  size="small"
+                >
+                  <InputLabel sx={{ fontSize: 10, pt: 1 }}>数量</InputLabel>
+                  <Select
+                    sx={{ fontSize: 10 }}
+                    name="featureQuantity"
+                    value={formValues.featureQuantity[3]}
+                    onChange={(e) => handleMultipleInputValue(e, "3", "feature")}
+                  >
+                    <MenuItem key="1" value="1">
+                      1
+                    </MenuItem>
+                    <MenuItem key="2" value="2">
+                      2
+                    </MenuItem>
+                    <MenuItem key="3 " value="3">
+                      3
+                    </MenuItem>
+                    <MenuItem key="4 " value="4">
+                      4
+                    </MenuItem>
+                    <MenuItem key="5 " value="5">
+                      5
+                    </MenuItem>
+                    <MenuItem key="6 " value="6">
+                      6
+                    </MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
             </div>
           </div>
           <div className="leftpanel-3">
@@ -773,7 +779,7 @@ function App() {
             </div>
           </div>
         </div>
-        </div>
+      </div>
     </form>
   );
 }
