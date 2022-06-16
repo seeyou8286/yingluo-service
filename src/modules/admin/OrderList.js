@@ -163,7 +163,7 @@ export default class  OrderList extends React.Component{
 
 
   componentDidMount() {
-    fetch("https://lispa.live/info")
+    fetch("https://lispa.live/info/retrieve")
     .then(response=> response.json())
     .then(datejson=>{
       this.setState({data:datejson});})

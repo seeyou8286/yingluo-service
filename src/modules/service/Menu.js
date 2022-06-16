@@ -39,7 +39,7 @@ function Menu() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formValues);
-    fetch("http://localhost:3000/submit", {
+    fetch("https://lispa.live/info/save", {
       method: "post",
       headers: { "Content-Type": "application/json; charset=utf-8" },
       body: JSON.stringify(formValues),

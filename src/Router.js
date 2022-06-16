@@ -20,10 +20,6 @@ class Router extends React.Component {
         <Route path="success" element={<Success/>} />
         <Route path="demo" element={<Demo/>} />
         <Route path="backend" element={<OrderList/>} />
-        <Route path="home" element={<Home/>} />
-        <Route path="Page1" element={<Page1/>} />
-        <Route path="Page2" element={<Page2/>} />
-        <Route path="Page3" element={<Page3/>} />
         {/* <Route path="signin" element={<SignIn/>} /> */}
       </Routes>
     );
