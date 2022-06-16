@@ -7,13 +7,6 @@ import { BrowserRouter } from "react-router-dom";
 import { createBrowserHistory } from "history";
 const hashHistory = createBrowserHistory();
 
-// ReactDOM.render(
-//   <BrowserRouter history={hashHistory}>
-//     <Router />
-//   </BrowserRouter>,
-//   document.getElementById('root')
-// );
-
 console.log("started")
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

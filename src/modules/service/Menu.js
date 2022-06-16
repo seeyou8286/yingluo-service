@@ -1,7 +1,6 @@
 import "../../App.css";
 import React, { useState } from "react";
 import ServiceOrderPic from "../../assets/service-2.jpeg";
-import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
@@ -11,6 +10,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
+import { useNavigate } from "react-router-dom";
 
 var sectionStyle = {
   backgroundImage: `url(${ServiceOrderPic})`,
@@ -21,17 +21,19 @@ const defaultValues = {
   itemQuantity: [1, 1, 1, 1],
   feature: [false, false, false, false],
   featureQuantity: [1, 1, 1, 1],
-  oiltype: [false, false, false, false, false],
+  oilType: [false, false, false, false, false],
   topup: [false, false, false],
   source: [false, false, false, false, false, false, false],
-  oilvolumn: [false, false, false],
+  oilVolumn: [false, false, false],
   strength: [false, false, false],
   phoneNumber: "",
   customer: "",
   employee: "",
 };
 
-function App() {
+function Menu() {
+  const navigate = useNavigate()
+
   const [formValues, setFormValues] = useState(defaultValues);
 
   const handleSubmit = (e) => {
@@ -41,7 +43,11 @@ function App() {
       method: "post",
       headers: { "Content-Type": "application/json; charset=utf-8" },
       body: JSON.stringify(formValues),
-    });
+    }).then(response => response.json())
+    .then(
+      navigate('/success'),
+      data => console.log(data)
+      );;
   };
 
   const handleInputChange = (e) => {
@@ -491,8 +497,8 @@ function App() {
                 <FormControlLabel
                   control={
                     <Checkbox
-                      name="oiltype"
-                      checked={formValues.oiltype[0]}
+                      name="oilType"
+                      checked={formValues.oilType[0]}
                       onChange={(e) => handleSingleInput(e, "0", "5")}
                       sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                     />
@@ -504,8 +510,8 @@ function App() {
                 <FormControlLabel
                   control={
                     <Checkbox
-                      name="oiltype"
-                      checked={formValues.oiltype[1]}
+                      name="oilType"
+                      checked={formValues.oilType[1]}
                       onChange={(e) => handleSingleInput(e, "1", "5")}
                       sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                     />
@@ -517,8 +523,8 @@ function App() {
                 <FormControlLabel
                   control={
                     <Checkbox
-                      name="oiltype"
-                      checked={formValues.oiltype[2]}
+                      name="oilType"
+                      checked={formValues.oilType[2]}
                       onChange={(e) => handleSingleInput(e, "2", "5")}
                       sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                     />
@@ -530,8 +536,8 @@ function App() {
                 <FormControlLabel
                   control={
                     <Checkbox
-                      name="oiltype"
-                      checked={formValues.oiltype[3]}
+                      name="oilType"
+                      checked={formValues.oilType[3]}
                       onChange={(e) => handleSingleInput(e, "3", "5")}
                       sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                     />
@@ -543,8 +549,8 @@ function App() {
                 <FormControlLabel
                   control={
                     <Checkbox
-                      name="oiltype"
-                      checked={formValues.oiltype[4]}
+                      name="oilType"
+                      checked={formValues.oilType[4]}
                       onChange={(e) => handleSingleInput(e, "4", "5")}
                       sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                     />
@@ -600,8 +606,8 @@ function App() {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        name="oilvolumn"
-                        checked={formValues.oilvolumn[0]}
+                        name="oilVolumn"
+                        checked={formValues.oilVolumn[0]}
                         onChange={(e) => handleSingleInput(e, "0", "3")}
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
@@ -613,8 +619,8 @@ function App() {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        name="oilvolumn"
-                        checked={formValues.oilvolumn[1]}
+                        name="oilVolumn"
+                        checked={formValues.oilVolumn[1]}
                         onChange={(e) => handleSingleInput(e, "1", "3")}
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
@@ -626,8 +632,8 @@ function App() {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        name="oilvolumn"
-                        checked={formValues.oilvolumn[2]}
+                        name="oilVolumn"
+                        checked={formValues.oilVolumn[2]}
                         onChange={(e) => handleSingleInput(e, "2", "3")}
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
@@ -802,4 +808,4 @@ function App() {
   );
 }
 
-export default App;
+export default Menu;
