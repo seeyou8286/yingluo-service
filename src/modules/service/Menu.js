@@ -19,13 +19,16 @@ var sectionStyle = {
 const defaultValues = {
   item: [false, false, false, false],
   itemQuantity: [1, 1, 1, 1],
-  feature: [false, false, false,false],
+  feature: [false, false, false, false],
   featureQuantity: [1, 1, 1, 1],
-  oiltype: [false, false, false],
+  oiltype: [false, false, false, false, false],
   topup: [false, false, false],
   source: [false, false, false, false, false, false, false],
   oilvolumn: [false, false, false],
   strength: [false, false, false],
+  phoneNumber: "",
+  customer: "",
+  employee: "",
 };
 
 function App() {
@@ -35,19 +38,20 @@ function App() {
     e.preventDefault();
     console.log(formValues);
     fetch("http://localhost:3000/submit", {
-      method: 'post',
-      headers: {'Content-Type': 'application/json; charset=utf-8'},
-      body:JSON.stringify(formValues)
-    })
+      method: "post",
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      body: JSON.stringify(formValues),
+    });
   };
 
   const handleInputChange = (e) => {
-    const { name, checked } = e.target;
+    const { name, value } = e.target;
     setFormValues({
       ...formValues,
-      [name]: checked,
+      [name]: value,
     });
   };
+
   const handleMultiInput = (e, index) => {
     const { name, checked } = e.target;
     let values = formValues[name];
@@ -307,7 +311,9 @@ function App() {
                     sx={{ fontSize: 10 }}
                     name="featureQuantity"
                     value={formValues.featureQuantity[0]}
-                    onChange={(e) => handleMultipleInputValue(e, "0", "feature")}
+                    onChange={(e) =>
+                      handleMultipleInputValue(e, "0", "feature")
+                    }
                   >
                     <MenuItem key="1" value="1">
                       1
@@ -354,7 +360,9 @@ function App() {
                     sx={{ fontSize: 10 }}
                     name="featureQuantity"
                     value={formValues.featureQuantity[1]}
-                    onChange={(e) => handleMultipleInputValue(e, "1", "feature")}
+                    onChange={(e) =>
+                      handleMultipleInputValue(e, "1", "feature")
+                    }
                   >
                     <MenuItem key="1" value="1">
                       1
@@ -401,7 +409,9 @@ function App() {
                     sx={{ fontSize: 10 }}
                     name="featureQuantity"
                     value={formValues.featureQuantity[2]}
-                    onChange={(e) => handleMultipleInputValue(e, "2", "feature")}
+                    onChange={(e) =>
+                      handleMultipleInputValue(e, "2", "feature")
+                    }
                   >
                     <MenuItem key="1" value="1">
                       1
@@ -448,7 +458,9 @@ function App() {
                     sx={{ fontSize: 10 }}
                     name="featureQuantity"
                     value={formValues.featureQuantity[3]}
-                    onChange={(e) => handleMultipleInputValue(e, "3", "feature")}
+                    onChange={(e) =>
+                      handleMultipleInputValue(e, "3", "feature")
+                    }
                   >
                     <MenuItem key="1" value="1">
                       1
@@ -479,9 +491,9 @@ function App() {
                 <FormControlLabel
                   control={
                     <Checkbox
-                      name="oil1"
-                      checked={formValues.oil1}
-                      onChange={handleSingleInput}
+                      name="oiltype"
+                      checked={formValues.oiltype[0]}
+                      onChange={(e) => handleSingleInput(e, "0", "5")}
                       sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                     />
                   }
@@ -492,9 +504,9 @@ function App() {
                 <FormControlLabel
                   control={
                     <Checkbox
-                      name="oil2"
-                      checked={formValues.oil2}
-                      onChange={handleSingleInput}
+                      name="oiltype"
+                      checked={formValues.oiltype[1]}
+                      onChange={(e) => handleSingleInput(e, "1", "5")}
                       sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                     />
                   }
@@ -505,9 +517,9 @@ function App() {
                 <FormControlLabel
                   control={
                     <Checkbox
-                      name="oil3"
-                      checked={formValues.oil3}
-                      onChange={handleSingleInput}
+                      name="oiltype"
+                      checked={formValues.oiltype[2]}
+                      onChange={(e) => handleSingleInput(e, "2", "5")}
                       sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                     />
                   }
@@ -518,9 +530,9 @@ function App() {
                 <FormControlLabel
                   control={
                     <Checkbox
-                      name="oil3"
-                      checked={formValues.oil3}
-                      onChange={handleSingleInput}
+                      name="oiltype"
+                      checked={formValues.oiltype[3]}
+                      onChange={(e) => handleSingleInput(e, "3", "5")}
                       sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                     />
                   }
@@ -531,9 +543,9 @@ function App() {
                 <FormControlLabel
                   control={
                     <Checkbox
-                      name="oil3"
-                      checked={formValues.oil3}
-                      onChange={handleSingleInput}
+                      name="oiltype"
+                      checked={formValues.oiltype[4]}
+                      onChange={(e) => handleSingleInput(e, "4", "5")}
                       sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                     />
                   }
@@ -634,9 +646,9 @@ function App() {
               className="vertical"
               control={
                 <Checkbox
-                  name="source1"
-                  checked={formValues.source1}
-                  onChange={handleInputChange}
+                  name="source"
+                  checked={formValues.source[0]}
+                  onChange={(e) => handleSingleInput(e, "0", "7")}
                   sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                 />
               }
@@ -646,9 +658,9 @@ function App() {
               className="vertical"
               control={
                 <Checkbox
-                  name="source2"
-                  checked={formValues.source2}
-                  onChange={handleInputChange}
+                  name="source"
+                  checked={formValues.source[1]}
+                  onChange={(e) => handleSingleInput(e, "1", "7")}
                   color="success"
                   sx={{
                     color: green[800],
@@ -665,9 +677,9 @@ function App() {
               className="vertical"
               control={
                 <Checkbox
-                  name="source3"
-                  checked={formValues.source3}
-                  onChange={handleInputChange}
+                  name="source"
+                  checked={formValues.source[2]}
+                  onChange={(e) => handleSingleInput(e, "2", "7")}
                   sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                 />
               }
@@ -677,9 +689,9 @@ function App() {
               className="vertical"
               control={
                 <Checkbox
-                  name="source4"
-                  checked={formValues.source4}
-                  onChange={handleInputChange}
+                  name="source"
+                  checked={formValues.source[3]}
+                  onChange={(e) => handleSingleInput(e, "3", "7")}
                   sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                 />
               }
@@ -690,9 +702,9 @@ function App() {
               className="vertical"
               control={
                 <Checkbox
-                  name="source5"
-                  checked={formValues.source5}
-                  onChange={handleInputChange}
+                  name="source"
+                  checked={formValues.source[4]}
+                  onChange={(e) => handleSingleInput(e, "4", "7")}
                   sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                 />
               }
@@ -702,9 +714,9 @@ function App() {
               className="vertical"
               control={
                 <Checkbox
-                  name="source6"
-                  checked={formValues.source6}
-                  onChange={handleInputChange}
+                  name="source"
+                  checked={formValues.source[5]}
+                  onChange={(e) => handleSingleInput(e, "5", "7")}
                   sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                 />
               }
@@ -714,9 +726,9 @@ function App() {
               className="vertical"
               control={
                 <Checkbox
-                  name="source7"
-                  checked={formValues.source7}
-                  onChange={handleInputChange}
+                  name="source"
+                  checked={formValues.source[6]}
+                  onChange={(e) => handleSingleInput(e, "6", "7")}
                   sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                 />
               }
@@ -728,9 +740,9 @@ function App() {
             <FormControlLabel
               control={
                 <Checkbox
-                  name="topup8000"
-                  checked={formValues.topup8000}
-                  onChange={handleSingleInput}
+                  name="topup"
+                  checked={formValues.topup[0]}
+                  onChange={(e) => handleSingleInput(e, "0", "3")}
                   sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
                 />
               }
@@ -739,9 +751,9 @@ function App() {
             <FormControlLabel
               control={
                 <Checkbox
-                  name="topup5000"
-                  checked={formValues.topup5000}
-                  onChange={handleSingleInput}
+                  name="topup"
+                  checked={formValues.topup[1]}
+                  onChange={(e) => handleSingleInput(e, "1", "3")}
                   sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
                 />
               }
@@ -750,9 +762,9 @@ function App() {
             <FormControlLabel
               control={
                 <Checkbox
-                  name="topup3000"
-                  checked={formValues.topup3000}
-                  onChange={handleSingleInput}
+                  name="topup"
+                  checked={formValues.topup[2]}
+                  onChange={(e) => handleSingleInput(e, "2", "3")}
                   sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
                 />
               }
@@ -761,17 +773,23 @@ function App() {
           </div>
           <div>
             <TextField
-              required
-              id="outlined-required"
-              label="必填"
-              defaultValue="预定手机号"
+              name="phoneNumber"
+              label="预定手机号(必填)"
+              value={formValues.name}
+              onChange={handleInputChange}
             />
             <TextField
-              required
-              id="outlined-required"
-              defaultValue="客户姓名"
+              name="customer"
+              label="客户名(必填)"
+              value={formValues.customer}
+              onChange={handleInputChange}
             />
-            <TextField required id="outlined-required" defaultValue="理疗师" />
+            <TextField
+              name="employee"
+              label="理疗师"
+              value={formValues.employee}
+              onChange={handleInputChange}
+            />
             <div style={{ textAlign: "right", paddingTop: "10px" }}>
               <Button variant="contained" color="primary" type="submit">
                 提交
