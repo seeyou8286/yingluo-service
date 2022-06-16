@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Menu from "./modules/service/Menu";
-import Test from "./modules/service/Test";
 import Home from "./modules/admin/Home";
 import Page1 from "./modules/admin/Page1";
 import Page2 from "./modules/admin/Page2";
@@ -16,7 +15,6 @@ class Router extends React.Component {
   render() {
     return (
       <Routes>
-        <Route path="test" element={<Test/>} />
         <Route path="demo" element={<Demo/>} />
         <Route path="menu" element={<Menu/>} />
         <Route path="backend" element={<OrderList/>} />
