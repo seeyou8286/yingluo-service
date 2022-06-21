@@ -1,16 +1,18 @@
 import "../../App.css";
 import React, { useState } from "react";
-import ServiceOrderPic from "../../assets/service-2.jpeg";
+import ServiceOrderPic from "../../assets/service.jpeg";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { pink, green } from "@mui/material/colors";
+import Alert from "@mui/material/Alert";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import { useNavigate } from "react-router-dom";
+
 
 var sectionStyle = {
   backgroundImage: `url(${ServiceOrderPic})`,
@@ -784,6 +786,7 @@ function Menu() {
               value={formValues.name}
               onChange={handleInputChange}
             />
+            <Alert variant="filled" severity="error">手机号必填哦！亲</Alert>
             <TextField
               name="customer"
               label="客户名(必填)"

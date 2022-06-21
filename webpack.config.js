@@ -40,6 +40,10 @@ module.exports = {
         loader: "url-loader",
         options: { limit: false },
       },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: "file-loader"
+      }
     ],
   },
 };
