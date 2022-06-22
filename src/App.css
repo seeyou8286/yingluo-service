@@ -1,4 +1,4 @@
-body {
+* {
   font-family: "FZXiaoBiaoSong-B05S"
 }
 
@@ -83,7 +83,7 @@ body {
 
 .inner {
   padding-left:40px;
-  height: 25%;
+  height: 24%;
 }
 
 .vertical {

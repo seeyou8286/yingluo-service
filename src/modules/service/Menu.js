@@ -13,7 +13,6 @@ import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import { useNavigate } from "react-router-dom";
 
-
 var sectionStyle = {
   backgroundImage: `url(${ServiceOrderPic})`,
 };
@@ -33,23 +32,55 @@ const defaultValues = {
   employee: "",
 };
 
+function allAreFalse(arr) {
+  return arr.every(element => element === false);
+}
+
 function Menu() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [formValues, setFormValues] = useState(defaultValues);
+  const [isAlerted, setAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(allAreFalse(formValues.item) && allAreFalse(formValues.feature)){
+      setAlert(true);
+      setAlertMessage("请选择项目,亲");
+      return;
+    } else if (allAreFalse(formValues.oilType)) {
+      setAlert(true);
+      setAlertMessage("请选择精油,亲");
+      return;
+    }else if (allAreFalse(formValues.strength)) {
+      setAlert(true);
+      setAlertMessage("请选择受力强度,亲");
+      return;
+    }else if (allAreFalse(formValues.oilVolumn)) {
+      setAlert(true);
+      setAlertMessage("请选择精油使用量,亲");
+      return;
+    }else if (formValues.phoneNumber == "") {
+      setAlert(true);
+      setAlertMessage("手机号必填哦！");
+      return;
+    } else if (formValues.customer == "") {
+      setAlert(true);
+      setAlertMessage("客户名必填哦！");
+      return;
+    }
+
     console.log(formValues);
     fetch("https://lispa.live/info/save", {
       method: "post",
       headers: { "Content-Type": "application/json; charset=utf-8" },
       body: JSON.stringify(formValues),
-    }).then(response => response.json())
-    .then(
-      navigate('/success'),
-      data => console.log(data)
-      );;
+    })
+      .then((response) => response.json())
+      .then(navigate("/success"), (data) => console.log(data));
   };
 
   const handleInputChange = (e) => {
@@ -670,13 +701,7 @@ function Menu() {
                   checked={formValues.source[1]}
                   onChange={(e) => handleSingleInput(e, "1", "7")}
                   color="success"
-                  sx={{
-                    color: green[800],
-                    "&.Mui-checked": {
-                      color: pink[600],
-                      fontSize: 25,
-                    },
-                  }}
+                  sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                 />
               }
               label="美团"
@@ -786,7 +811,7 @@ function Menu() {
               value={formValues.name}
               onChange={handleInputChange}
             />
-            <Alert variant="filled" severity="error">手机号必填哦！亲</Alert>
+
             <TextField
               name="customer"
               label="客户名(必填)"
@@ -799,12 +824,22 @@ function Menu() {
               value={formValues.employee}
               onChange={handleInputChange}
             />
-            <div style={{ textAlign: "right", paddingTop: "10px" }}>
-              <Button variant="contained" color="primary" type="submit">
-                提交
-              </Button>
-            </div>
           </div>
+        </div>
+      </div>
+      <div style={{ marginTop: "-88px", textAlign: "center" }}>
+        
+        <div>
+          <Button variant="contained" color="primary" type="submit">
+            提交
+          </Button>
+        </div>
+        <div style={{display:'inline-block',paddingTop:'2px'}}>
+          {isAlerted && (
+            <Alert  variant="filled" severity="error">
+              {alertMessage}
+            </Alert>
+          )}
         </div>
       </div>
     </form>
