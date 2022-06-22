@@ -163,7 +163,8 @@ export default class  OrderList extends React.Component{
 
 
   componentDidMount() {
-    fetch("https://lispa.live/info/retrieve")
+    // fetch("https://lispa.live/info/retrieve")
+    fetch("http://localhost:3000/info/retrieve")
     .then(response=> response.json())
     .then(datejson=>{
       this.setState({data:datejson});})
@@ -174,7 +175,7 @@ export default class  OrderList extends React.Component{
 
   render(){
     return (
-      <Paper style={{ height: 800, width: '100%' }}>
+      <Paper style={{ height: 2800, width: '100%' }}>
         <VirtualizedTable
           rowCount={this.state.data.length}
           rowGetter={({ index }) => this.state.data[index]}
@@ -218,6 +219,11 @@ export default class  OrderList extends React.Component{
               width: 100,
               label: '技师姓名',
               dataKey: 'mastername'
+            },
+            {
+              width: 100,
+              label: '客户姓名',
+              dataKey: 'customername'
             },
             {
               width: 200,
