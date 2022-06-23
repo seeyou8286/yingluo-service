@@ -1,161 +1,34 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { styled } from '@mui/material/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { AutoSizer, Column, Table } from 'react-virtualized';
+import Button from "@mui/material/Button";
 
-const classes = {
-  flexContainer: 'ReactVirtualizedDemo-flexContainer',
-  tableRow: 'ReactVirtualizedDemo-tableRow',
-  tableRowHover: 'ReactVirtualizedDemo-tableRowHover',
-  tableCell: 'ReactVirtualizedDemo-tableCell',
-  noClick: 'ReactVirtualizedDemo-noClick',
-};
-
-const styles = ({ theme }) => ({
-  // temporary right-to-left patch, waiting for
-  // https://github.com/bvaughn/react-virtualized/issues/454
-  '& .ReactVirtualized__Table__headerRow': {
-    ...(theme.direction === 'rtl' && {
-      paddingLeft: '0 !important',
-    }),
-    ...(theme.direction !== 'rtl' && {
-      paddingRight: undefined,
-    }),
-  },
-  [`& .${classes.flexContainer}`]: {
-    display: 'flex',
-    alignItems: 'center',
-    boxSizing: 'border-box',
-  },
-  [`& .${classes.tableRow}`]: {
-    cursor: 'pointer',
-  },
-  [`& .${classes.tableRowHover}`]: {
-    '&:hover': {
-      backgroundColor: theme.palette.grey[200],
-    },
-  },
-  [`& .${classes.tableCell}`]: {
-    flex: 1,
-  },
-  [`& .${classes.noClick}`]: {
-    cursor: 'initial',
-  },
-});
-
-class MuiVirtualizedTable extends React.PureComponent {
-
-  static defaultProps = {
-    headerHeight: 48,
-    rowHeight: 80,
-  };
-
-  getRowClassName = ({ index }) => {
-    const { onRowClick } = this.props;
-
-    return clsx(classes.tableRow, classes.flexContainer, {
-      [classes.tableRowHover]: index !== -1 && onRowClick != null,
-    });
-  };
-
-  cellRenderer = ({ cellData, columnIndex }) => {
-    const { columns, rowHeight, onRowClick } = this.props;
-    return (
-      <TableCell
-        component="div"
-        className={clsx(classes.tableCell, classes.flexContainer, {
-          [classes.noClick]: onRowClick == null,
-        })}
-        variant="body"
-        style={{ height: rowHeight }}
-        align={
-          (columnIndex != null && columns[columnIndex].numeric) || false
-            ? 'right'
-            : 'left'
-        }
-      >
-        {cellData}
-      </TableCell>
-    );
-  };
-
-  headerRenderer = ({ label, columnIndex }) => {
-    const { headerHeight, columns } = this.props;
-
-    return (
-      <TableCell
-        component="div"
-        className={clsx(classes.tableCell, classes.flexContainer, classes.noClick)}
-        variant="head"
-        style={{ height: headerHeight }}
-        align={columns[columnIndex].numeric || false ? 'right' : 'left'}
-      >
-        <span>{label}</span>
-      </TableCell>
-    );
-  };
-
-  render() {
-    const { columns, rowHeight, headerHeight, ...tableProps } = this.props;
-    return (
-      <AutoSizer>
-        {({ height, width }) => (
-          <Table
-            height={height}
-            width={width}
-            rowHeight={rowHeight}
-            gridStyle={{
-              direction: 'inherit',
-            }}
-            headerHeight={headerHeight}
-            {...tableProps}
-            rowClassName={this.getRowClassName}
-          >
-            {columns.map(({ dataKey, ...other }, index) => {
-              return (
-                <Column
-                  key={dataKey}
-                  headerRenderer={(headerProps) =>
-                    this.headerRenderer({
-                      ...headerProps,
-                      columnIndex: index,
-                    })
-                  }
-                  className={classes.flexContainer}
-                  cellRenderer={this.cellRenderer}
-                  dataKey={dataKey}
-                  {...other}
-                />
-              );
-            })}
-          </Table>
-        )}
-      </AutoSizer>
-    );
-  }
+function createData(
+  name,
+  calories,
+  fat,
+  carbs,
+  protein
+) {
+  return { name, calories, fat, carbs, protein };
 }
 
-MuiVirtualizedTable.propTypes = {
-  columns: PropTypes.arrayOf(
-    PropTypes.shape({
-      dataKey: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-      numeric: PropTypes.bool,
-      width: PropTypes.number.isRequired,
-    }),
-  ).isRequired,
-  headerHeight: PropTypes.number,
-  onRowClick: PropTypes.func,
-  rowHeight: PropTypes.number,
-};
-
-const VirtualizedTable = styled(MuiVirtualizedTable)(styles);
+const rows = [
+  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+  createData('Eclair', 262, 16.0, 24, 6.0),
+  createData('Cupcake', 305, 3.7, 67, 4.3),
+  createData('Gingerbread', 356, 16.0, 49, 3.9),
+];
 
 
 export default class  OrderList extends React.Component{
+
   constructor(props) {
     super(props);
     this.state = {data: []};
@@ -170,70 +43,59 @@ export default class  OrderList extends React.Component{
       this.setState({data:datejson});})
   }
 
-
-
-
-  render(){
+  render() {
     return (
-      <Paper style={{ height: 2800, width: '100%' }}>
-        <VirtualizedTable
-          rowCount={this.state.data.length}
-          rowGetter={({ index }) => this.state.data[index]}
-          columns={[
-            {
-              width: 60,
-              label: '序号',
-              dataKey: 'id',
-            },
-            {
-              width: 120,
-              label: '项目',
-              dataKey: 'item'
-            },
-            {
-              width: 100,
-              label: '精油选择',
-              dataKey: 'oiltype'
-            },
-            {
-              width: 100,
-              label: '受力程度',
-              dataKey: 'strength'
-            },
-            {
-              width: 100,
-              label: '地址',
-              dataKey: 'place'
-            },
-            {
-              width: 100,
-              label: '精油使用量',
-              dataKey: 'oilvolumn'
-            },
-            {
-              width: 100,
-              label: '客户电话',
-              dataKey: 'customerphoneno'
-            },
-            {
-              width: 100,
-              label: '技师姓名',
-              dataKey: 'mastername'
-            },
-            {
-              width: 100,
-              label: '客户姓名',
-              dataKey: 'customername'
-            },
-            {
-              width: 200,
-              label: '下单时间',
-              dataKey: 'orderdate'
-            },
-          ]}
-        />
-      </Paper>
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>序列号</TableCell>
+            <TableCell align="right">项目名称&nbsp;(数量)</TableCell>
+            <TableCell align="right">精油类型</TableCell>
+            <TableCell align="right">受力程度</TableCell>
+            <TableCell align="right">精油使用量</TableCell>
+            <TableCell align="right">客户电话</TableCell>
+            <TableCell align="right">技师</TableCell>
+            <TableCell align="right">客户姓名</TableCell>
+            <TableCell align="right">下单时间</TableCell>
+            <TableCell align="right">地址</TableCell>
+            <TableCell align="right">来源</TableCell>
+            <TableCell align="right">充值</TableCell>
+            <TableCell align="right">操作</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {this.state.data.map((row) => (
+            <TableRow
+              key={row.id}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                {row.id}
+              </TableCell>
+              <TableCell component="th" scope="row">
+                {row.item}
+              </TableCell>
+              <TableCell align="right">{row.oilType}</TableCell>
+              <TableCell align="right">{row.strength}</TableCell>
+              <TableCell align="right">{row.oilvolumn}</TableCell>
+              <TableCell align="right">{row.customerphoneno}</TableCell>
+              <TableCell align="right">{row.mastername}</TableCell>
+              <TableCell align="right">{row.customername}</TableCell>
+              <TableCell align="right">{row.orderdate}</TableCell>
+              <TableCell align="right">{row.place}</TableCell>
+              <TableCell align="right">{row.source}</TableCell>
+              <TableCell align="right">{row.topupamount}</TableCell>
+              <TableCell align="right">
+                <Button variant="contained" color="primary" type="submit">
+                 更改
+                </Button>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
     );
   }
-  
 }
