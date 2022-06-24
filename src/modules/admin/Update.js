@@ -1,21 +1,15 @@
 import "../../App.css";
 import React, { useState } from "react";
-import ServiceOrderPic from "../../assets/service.jpeg";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { pink, green } from "@mui/material/colors";
 import Alert from "@mui/material/Alert";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import { useNavigate } from "react-router-dom";
-
-var sectionStyle = {
-  backgroundImage: `url(${ServiceOrderPic})`,
-};
 
 const defaultValues = {
   item: [false, false, false, false],
@@ -36,12 +30,13 @@ function allAreFalse(arr) {
   return arr.every(element => element === false);
 }
 
-function Menu() {
-  const navigate = useNavigate();
+function Update() {
 
   const [formValues, setFormValues] = useState(defaultValues);
   const [isAlerted, setAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -126,7 +121,7 @@ function Menu() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="box" style={sectionStyle}>
+      <div className="box">
         <div className="left">
           <div className="leftpanel-1">
             <div>
@@ -825,7 +820,7 @@ function Menu() {
           </div>
         </div>
       </div>
-      <div style={{ marginTop: "-88px", textAlign: "center" }}>
+      <div style={{ marginTop: "88px", textAlign: "center" }}>
         
         <div>
           <Button variant="contained" color="primary" type="submit">
@@ -844,4 +839,4 @@ function Menu() {
   );
 }
 
-export default Menu;
+export default Update;
