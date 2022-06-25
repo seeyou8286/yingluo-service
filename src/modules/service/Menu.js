@@ -11,6 +11,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
+import Link from "@mui/material/Link";
 import { useNavigate } from "react-router-dom";
 
 var sectionStyle = {
@@ -132,7 +133,7 @@ function Menu() {
             <div>
               <div className="rowDirection">
                 <div className="item">
-                  <FormControlLabel
+                <FormControlLabel
                     control={
                       <Checkbox
                         name="item"
@@ -141,8 +142,11 @@ function Menu() {
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
-                    label="采耳头疗【店铺招牌】      45分钟"
+                    label="采耳头疗【店铺招牌】      &nbsp;45分钟"
                   />
+                <Link href="/detail" underline="none" color="inherit" variant="caption">
+                  详情
+                </Link>
                 </div>
                 <p className="price">188元</p>
                 <FormControl
@@ -188,8 +192,11 @@ function Menu() {
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
-                    label="精油SPA【精油舒压】      60分钟"
+                    label="精油SPA 【精油舒压】      &nbsp;60分钟"
                   />
+                  <Link href="/detail" underline="none" color="inherit" variant="caption">
+                  详情
+                </Link>
                 </div>
                 <p className="price">288元</p>
                 <FormControl
@@ -235,8 +242,11 @@ function Menu() {
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
-                    label="肝胆排毒【熬夜必点】      90分钟"
+                    label="肝胆排毒【熬夜必点】      &nbsp;90分钟"
                   />
+                  <Link href="/detail" underline="none" color="inherit" variant="caption">
+                  详情
+                </Link>
                 </div>
                 <p className="price">488元</p>
                 <FormControl
@@ -282,8 +292,11 @@ function Menu() {
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
-                    label="淋巴排毒【懒人必点】      90分钟"
+                    label="淋巴排毒【懒人必点】      &nbsp;90分钟"
                   />
+                  <Link href="/detail" underline="none" color="inherit" variant="caption">
+                  详情
+                </Link>
                 </div>
                 <p className="price">488元</p>
                 <FormControl
@@ -334,8 +347,11 @@ function Menu() {
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
-                    label="大阪樱花【店铺特色】      90分钟"
+                    label="大阪樱花【店铺特色】      &nbsp;90分钟"
                   />
+                  <Link href="/detail" underline="none" color="inherit" variant="caption">
+                  详情
+                </Link>
                 </div>
 
                 <p className="price">588元</p>
@@ -386,6 +402,9 @@ function Menu() {
                     }
                     label="富士山下【女神奢宠】      100分钟"
                   />
+                  <Link href="/detail" underline="none" color="inherit" variant="caption">
+                  详情
+                </Link>
                 </div>
                 <p className="price">618元</p>
                 <FormControl
@@ -435,6 +454,9 @@ function Menu() {
                     }
                     label="京都礼遇【店铺爆款】      100分钟"
                   />
+                  <Link href="/detail" underline="none" color="inherit" variant="caption">
+                  详情
+                </Link>
                 </div>
                 <p className="price">688元</p>
                 <FormControl
@@ -484,6 +506,9 @@ function Menu() {
                     }
                     label="东京の热【男士尊享】      100分钟"
                   />
+                  <Link href="/detail" underline="none" color="inherit" variant="caption">
+                  详情
+                </Link>
                 </div>
                 <p className="price">888元</p>
                 <FormControl

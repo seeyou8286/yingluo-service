@@ -13,6 +13,17 @@
     "."; 
 }
 
+.imageScroll {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-size: cover;
+  flex-direction: row;
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+}
+
+
 .box {
   min-height: 100vh;
   display: flex;
@@ -26,6 +37,7 @@
   font-size: 20px;
   margin:0px;
   padding-top: 10px;
+  padding-left: 20px;
   width: 20%;
 }
 
@@ -49,7 +61,7 @@
 
 
 .left {
-  width: 65%;
+  width: 68%;
   margin: 10px;
   padding-left: 20px;
 }
@@ -88,6 +100,10 @@
 
 .vertical {
   height: 150px;  
+  writing-mode: vertical-lr;
+}
+
+.pureVertical {
   writing-mode: vertical-lr;
 }
 

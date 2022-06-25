@@ -1,5 +1,5 @@
 import "../../App.css";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
@@ -31,12 +31,16 @@ function allAreFalse(arr) {
 }
 
 function Update() {
-
+  const navigate = useNavigate();
   const [formValues, setFormValues] = useState(defaultValues);
   const [isAlerted, setAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
-  
+  useEffect(() => {
+    if (!sessionStorage.getItem("logged")) {
+      navigate("/login");
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();

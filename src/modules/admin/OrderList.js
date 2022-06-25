@@ -1,43 +1,41 @@
 import React, { useState, useEffect } from "react";
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 
-
-function  OrderList ()
-{
+function OrderList() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
 
-
-  const handleUpdate = (e,row) =>{
+  const handleUpdate = (e, row) => {
     console.log(row);
     e.preventDefault();
-    navigate("/update")
+    navigate("/update");
   };
 
   function initData() {
     fetch("http://localhost:3000/info/retrieve")
-    .then(response=> response.json())
-    .then(datejson=>{
-      setData(datejson);
-    })
+      .then((response) => response.json())
+      .then((datejson) => {
+        setData(datejson);
+      });
   }
 
   useEffect(() => {
-    // Some initialization logic here
+    console.log(sessionStorage.getItem("logged"))
+    if (!sessionStorage.getItem("logged")) {
+      navigate("/login");
+    }
     initData();
   }, []);
-  
- 
-    return (
-      
+
+  return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -61,7 +59,7 @@ function  OrderList ()
           {data.map((row) => (
             <TableRow
               key={row.id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
                 {row.id}
@@ -80,8 +78,13 @@ function  OrderList ()
               <TableCell align="right">{row.source}</TableCell>
               <TableCell align="right">{row.topupamount}</TableCell>
               <TableCell align="right">
-                <Button onClick={(e) => handleUpdate(e,row)} variant="contained" color="primary" type="submit">
-                 更改
+                <Button
+                  onClick={(e) => handleUpdate(e, row)}
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                >
+                  更改
                 </Button>
               </TableCell>
             </TableRow>
@@ -89,6 +92,6 @@ function  OrderList ()
         </TableBody>
       </Table>
     </TableContainer>
-    );
+  );
 }
 export default OrderList;
