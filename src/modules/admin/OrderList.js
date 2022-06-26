@@ -14,9 +14,9 @@ function OrderList() {
   const [data, setData] = useState([]);
 
   const handleUpdate = (e, row) => {
-    console.log(row);
+    // console.log(row);
     e.preventDefault();
-    navigate("/update");
+    navigate('/update', { state: row });
   };
 
   function initData() {

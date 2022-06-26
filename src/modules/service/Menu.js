@@ -831,7 +831,7 @@ function Menu() {
             <TextField
               name="phoneNumber"
               label="预定手机号(必填)"
-              value={formValues.name}
+              value={formValues.phoneNumber}
               onChange={handleInputChange}
             />
 

@@ -9,9 +9,33 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
-import { useNavigate } from "react-router-dom";
+import { useLocation,useNavigate } from "react-router-dom";
+
+
+const itemName = ["采耳头疗", "精油SPA", "肝胆排毒", "淋巴排毒"];
+const featureName = ["大阪樱花", "富士山下", "京都礼遇", "东京の热"];
+const oilTypeName = [
+  "生榨椰子油",
+  "艾草生姜",
+  "约会必备",
+  "玫瑰润养",
+  "橄榄精油",
+];
+const strengthName = ["大力", "适中", "小力"];
+const oilVolumnName = ["加大量", "加大", "正常"];
+const sourceName = [
+  "大众点评",
+  "美团",
+  "小红书",
+  "抖音",
+  "会员",
+  "朋友介绍",
+  "其他",
+];
+const topupName = ["充8000送4000", "充5000送2000", "充3000送1000"];
 
 const defaultValues = {
+  id:"",
   item: [false, false, false, false],
   itemQuantity: [1, 1, 1, 1],
   feature: [false, false, false, false],
@@ -30,7 +54,56 @@ function allAreFalse(arr) {
   return arr.every(element => element === false);
 }
 
-function Update() {
+function Update({}) {
+  const {state} = useLocation();
+  const {id,item,oiltype, strength,oilvolumn,customerphoneno,customername,mastername,orderdate,place,source,topupamount} = state; // Read values passed on state 
+  console.log(item)
+  defaultValues.customer = customername;
+  defaultValues.phoneNumber = customerphoneno;
+  defaultValues.employee = mastername;
+  defaultValues.id = id;
+  for (let i in oilTypeName) {
+    if (oilTypeName[i] === oiltype) {
+      defaultValues.oilType[i]=true;
+    }
+  }
+  for (let i in item) {
+    for(let j in itemName) {
+      if (itemName[j] === item[i][0]) {
+        defaultValues.item[j]=true;
+        defaultValues.itemQuantity[j]=item[i][1];
+      }
+    }
+    for(let j in featureName) {
+      if (featureName[j] === item[i][0]) {
+        defaultValues.feature[j]=true;
+        defaultValues.featureQuantity[j]=item[i][1];
+      }
+    }
+  }
+  for (let i in strengthName) {
+    if (strengthName[i] === strength) {
+      defaultValues.strength[i]=true;
+    }
+  }
+  for (let i in oilVolumnName) {
+    if (oilVolumnName[i] === oilvolumn) {
+      defaultValues.oilVolumn[i]=true;
+    }
+  }
+  for (let i in sourceName) {
+    if (sourceName[i] === source) {
+      defaultValues.source[i]=true;
+    }
+  }
+  for (let i in topupName) {
+    if (topupName[i] === topupamount) {
+      defaultValues.topup[i]=true;
+    }
+  }
+
+
+  console.log(customername)
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState(defaultValues);
   const [isAlerted, setAlert] = useState(false);
@@ -71,7 +144,8 @@ function Update() {
     }
 
     console.log(formValues);
-    fetch("https://lispa.live/info/save", {
+    // fetch("https://lispa.live/info/update", {
+      fetch("http://localhost:3000/info/update", {
       method: "post",
       headers: { "Content-Type": "application/json; charset=utf-8" },
       body: JSON.stringify(formValues),
@@ -805,7 +879,7 @@ function Update() {
             <TextField
               name="phoneNumber"
               label="预定手机号(必填)"
-              value={formValues.name}
+              value={formValues.phoneNumber}
               onChange={handleInputChange}
             />
 
