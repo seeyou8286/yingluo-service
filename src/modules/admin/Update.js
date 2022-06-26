@@ -144,8 +144,8 @@ function Update({}) {
     }
 
     console.log(formValues);
-    // fetch("https://lispa.live/info/update", {
-      fetch("http://localhost:3000/info/update", {
+    fetch("https://lispa.live/info/update", {
+      // fetch("http://localhost:3000/info/update", {
       method: "post",
       headers: { "Content-Type": "application/json; charset=utf-8" },
       body: JSON.stringify(formValues),
