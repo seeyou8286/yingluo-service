@@ -16,10 +16,10 @@ function Suceess() {
   return(
   <div className="box" style={sectionStyle}>
     <div>
-      <Typography variant="h4" style={{ color: "yellow",writingMode: "vertical-lr" }}>您已成功提交</Typography>
+      <Typography variant="h4" style={{ color: "#e7e7e7",writingMode: "vertical-lr" }}>您已成功提交</Typography>
     </div>
     <div>
-      <Button onClick={(e) => navigate("/menu")} variant="contained" color="secondary" type="submit" style={{margin:"55px", writingMode: "vertical-lr" }}>
+      <Button onClick={(e) => navigate("/menu")} variant="h4" type="submit" style={{margin:"55px", writingMode: "vertical-lr",backgroundColor: "#e7e7e7"}}>
         返<br/>
         回
       </Button>

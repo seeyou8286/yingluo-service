@@ -32,7 +32,7 @@ function OrderList() {
     setOpen(false);
   };
 
-  const handleAgree = () => {
+  const handleAgreeDelete = () => {
     fetch("https://lispa.live/info/delete", {
       method: "post",
       headers: { "Content-Type": "application/json; charset=utf-8" },
@@ -84,7 +84,7 @@ function OrderList() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>取消</Button>
-          <Button onClick={handleAgree} autoFocus>
+          <Button onClick={handleAgreeDelete} autoFocus>
             确定
           </Button>
         </DialogActions>
