@@ -20,7 +20,7 @@ function OrderList() {
   };
 
   function initData() {
-    fetch("http://localhost:3000/info/retrieve")
+    fetch("https://lispa.live/info/retrieve")
       .then((response) => response.json())
       .then((datejson) => {
         setData(datejson);
@@ -52,6 +52,7 @@ function OrderList() {
             <TableCell align="right">地址</TableCell>
             <TableCell align="right">来源</TableCell>
             <TableCell align="right">充值</TableCell>
+            <TableCell align="right">操作</TableCell>
             <TableCell align="right">操作</TableCell>
           </TableRow>
         </TableHead>
@@ -85,6 +86,16 @@ function OrderList() {
                   type="submit"
                 >
                   更改
+                </Button>
+              </TableCell>
+              <TableCell align="right">
+                <Button
+                  onClick={(e) => handleDelete(e, row)}
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                >
+                  删除
                 </Button>
               </TableCell>
             </TableRow>

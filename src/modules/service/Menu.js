@@ -1,6 +1,6 @@
 import "../../App.css";
 import React, { useState } from "react";
-import ServiceOrderPic from "../../assets/service.jpeg";
+import ServiceOrderPic from "../../assets/menu.jpeg";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
@@ -13,6 +13,8 @@ import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import Link from "@mui/material/Link";
 import { useNavigate } from "react-router-dom";
+import { withTheme } from "@emotion/react";
+import Typography from "@mui/material/Typography";
 
 var sectionStyle = {
   backgroundImage: `url(${ServiceOrderPic})`,
@@ -41,33 +43,33 @@ function Menu() {
   const navigate = useNavigate();
 
   const [formValues, setFormValues] = useState(defaultValues);
-  const [isAlerted, setAlert] = useState(false);
+  const [isAlerted, setAlert] = useState("hidden");
   const [alertMessage, setAlertMessage] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if(allAreFalse(formValues.item) && allAreFalse(formValues.feature)){
-      setAlert(true);
+      setAlert("visible");
       setAlertMessage("请选择项目,亲");
       return;
     } else if (allAreFalse(formValues.oilType)) {
-      setAlert(true);
+      setAlert("visible");
       setAlertMessage("请选择精油,亲");
       return;
     }else if (allAreFalse(formValues.strength)) {
-      setAlert(true);
+      setAlert("visible");
       setAlertMessage("请选择受力强度,亲");
       return;
     }else if (allAreFalse(formValues.oilVolumn)) {
-      setAlert(true);
+      setAlert("visible");
       setAlertMessage("请选择精油使用量,亲");
       return;
     }else if (formValues.phoneNumber == "") {
-      setAlert(true);
+      setAlert("visible");
       setAlertMessage("手机号必填哦！");
       return;
     } else if (formValues.customer == "") {
-      setAlert(true);
+      setAlert("visible");
       setAlertMessage("客户名必填哦！");
       return;
     }
@@ -703,7 +705,7 @@ function Menu() {
         </div>
         <div className="right">
           <div className="inner"></div>
-          <div className="inner" style={{ paddingTop: "35px" }}>
+          <div className="innerSource">
             <FormControlLabel
               className="vertical"
               control={
@@ -711,10 +713,10 @@ function Menu() {
                   name="source"
                   checked={formValues.source[0]}
                   onChange={(e) => handleSingleInput(e, "0", "7")}
-                  sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                  sx={{color:"white", "& .MuiSvgIcon-root": { fontSize: 25,color:"white" } }}
                 />
               }
-              label="大众点评"
+              label={<Typography style={{color:"white"}}>大众点评</Typography>}
             />
             <FormControlLabel
               className="vertical"
@@ -724,10 +726,10 @@ function Menu() {
                   checked={formValues.source[1]}
                   onChange={(e) => handleSingleInput(e, "1", "7")}
                   color="success"
-                  sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                  sx={{color:"white", "& .MuiSvgIcon-root": { fontSize: 25,color:"white" } }}
                 />
               }
-              label="美团"
+              label={<Typography style={{color:"white"}}>美团</Typography>}
             />
             <FormControlLabel
               className="vertical"
@@ -736,10 +738,10 @@ function Menu() {
                   name="source"
                   checked={formValues.source[2]}
                   onChange={(e) => handleSingleInput(e, "2", "7")}
-                  sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                  sx={{color:"white", "& .MuiSvgIcon-root": { fontSize: 25,color:"white" } }}
                 />
               }
-              label="小红书"
+              label={<Typography style={{color:"white"}}>小红书</Typography>}
             />
             <FormControlLabel
               className="vertical"
@@ -748,10 +750,10 @@ function Menu() {
                   name="source"
                   checked={formValues.source[3]}
                   onChange={(e) => handleSingleInput(e, "3", "7")}
-                  sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                  sx={{color:"white", "& .MuiSvgIcon-root": { fontSize: 25,color:"white" } }}
                 />
               }
-              label="抖音"
+              label={<Typography style={{color:"white",marginRight:"10px"}}>抖音</Typography>}
             />
 
             <FormControlLabel
@@ -761,10 +763,10 @@ function Menu() {
                   name="source"
                   checked={formValues.source[4]}
                   onChange={(e) => handleSingleInput(e, "4", "7")}
-                  sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                  sx={{color:"white", "& .MuiSvgIcon-root": { fontSize: 25,color:"white" } }}
                 />
               }
-              label="会员"
+              label={<Typography style={{color:"white"}}>会员</Typography>}
             />
             <FormControlLabel
               className="vertical"
@@ -773,10 +775,10 @@ function Menu() {
                   name="source"
                   checked={formValues.source[5]}
                   onChange={(e) => handleSingleInput(e, "5", "7")}
-                  sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                  sx={{color:"white", "& .MuiSvgIcon-root": { fontSize: 25,color:"white" } }}
                 />
               }
-              label="朋友介绍"
+              label={<Typography style={{color:"white"}}>朋友介绍</Typography>}
             />
             <FormControlLabel
               className="vertical"
@@ -785,24 +787,23 @@ function Menu() {
                   name="source"
                   checked={formValues.source[6]}
                   onChange={(e) => handleSingleInput(e, "6", "7")}
-                  sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                  sx={{color:"white", "& .MuiSvgIcon-root": { fontSize: 25,color:"white" } }}
                 />
               }
-              label="其他"
+              label={<Typography style={{color:"white"}}>其他</Typography>}
             />
           </div>
-          <div className="inner">
-            <div style={{ paddingTop: "20px" }}> 充值优惠</div>
+          <div className="innerTopup">
             <FormControlLabel
               control={
                 <Checkbox
                   name="topup"
                   checked={formValues.topup[0]}
                   onChange={(e) => handleSingleInput(e, "0", "3")}
-                  sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
+                  sx={{ color:"white","& .MuiSvgIcon-root": { fontSize: 38,color:"white" } }}
                 />
               }
-              label="充8000送4000"
+              label={<Typography style={{color:"white"}}>充8000送4000</Typography>}
             />
             <FormControlLabel
               control={
@@ -810,10 +811,10 @@ function Menu() {
                   name="topup"
                   checked={formValues.topup[1]}
                   onChange={(e) => handleSingleInput(e, "1", "3")}
-                  sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
+                  sx={{ color:"white","& .MuiSvgIcon-root": { fontSize: 38,color:"white" } }}
                 />
               }
-              label="充5000送2000"
+              label={<Typography style={{color:"white"}}>充5000送2000</Typography>}
             />
             <FormControlLabel
               control={
@@ -821,13 +822,13 @@ function Menu() {
                   name="topup"
                   checked={formValues.topup[2]}
                   onChange={(e) => handleSingleInput(e, "2", "3")}
-                  sx={{ "& .MuiSvgIcon-root": { fontSize: 38 } }}
+                  sx={{ color:"white","& .MuiSvgIcon-root": { fontSize: 38,color:"white" } }}
                 />
               }
-              label="充3000送1000"
+              label={<Typography style={{color:"white"}}>充3000送1000</Typography>}
             />
           </div>
-          <div>
+          <div className="rightLastRow">
             <TextField
               name="phoneNumber"
               label="预定手机号(必填)"
@@ -851,18 +852,15 @@ function Menu() {
         </div>
       </div>
       <div style={{ marginTop: "-88px", textAlign: "center" }}>
-        
+        <div style={{display:'inline-block',visibility:`${isAlerted}`,paddingTop:'2px'}}>
+            <Alert  variant="filled" severity="error">
+                {alertMessage}
+            </Alert>
+        </div>
         <div>
           <Button variant="contained" color="primary" type="submit">
             提交
           </Button>
-        </div>
-        <div style={{display:'inline-block',paddingTop:'2px'}}>
-          {isAlerted && (
-            <Alert  variant="filled" severity="error">
-              {alertMessage}
-            </Alert>
-          )}
         </div>
       </div>
     </form>
