@@ -10,7 +10,11 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import { useLocation,useNavigate } from "react-router-dom";
-
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 const itemName = ["采耳头疗", "精油SPA", "肝胆排毒", "淋巴排毒"];
 const featureName = ["大阪樱花", "富士山下", "京都礼遇", "东京の热"];
@@ -34,30 +38,34 @@ const sourceName = [
 ];
 const topupName = ["充8000送4000", "充5000送2000", "充3000送1000"];
 
-const defaultValues = {
-  id:"",
-  item: [false, false, false, false],
-  itemQuantity: [1, 1, 1, 1],
-  feature: [false, false, false, false],
-  featureQuantity: [1, 1, 1, 1],
-  oilType: [false, false, false, false, false],
-  topup: [false, false, false],
-  source: [false, false, false, false, false, false, false],
-  oilVolumn: [false, false, false],
-  strength: [false, false, false],
-  phoneNumber: "",
-  customer: "",
-  employee: "",
-};
+
 
 function allAreFalse(arr) {
   return arr.every(element => element === false);
 }
 
 function Update({}) {
+  const [open, setOpen] = React.useState(false);
+  
+  const defaultValues = {
+    id:"",
+    item: [false, false, false, false],
+    itemQuantity: [1, 1, 1, 1],
+    feature: [false, false, false, false],
+    featureQuantity: [1, 1, 1, 1],
+    oilType: [false, false, false, false, false],
+    topup: [false, false, false],
+    source: [false, false, false, false, false, false, false],
+    oilVolumn: [false, false, false],
+    strength: [false, false, false],
+    phoneNumber: "",
+    customer: "",
+    employee: "",
+  };
+
   const {state} = useLocation();
   const {id,item,oiltype, strength,oilvolumn,customerphoneno,customername,mastername,orderdate,place,source,topupamount} = state; // Read values passed on state 
-  console.log(item)
+  console.log(state)
   defaultValues.customer = customername;
   defaultValues.phoneNumber = customerphoneno;
   defaultValues.employee = mastername;
@@ -115,7 +123,20 @@ function Update({}) {
     }
   }, []);
 
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleBack = (e) => {
+    // console.log(row);
+    e.preventDefault();
+    navigate('/backend');
+  };
+
+
   const handleSubmit = (e) => {
+    setOpen(true);
     e.preventDefault();
     if(allAreFalse(formValues.item) && allAreFalse(formValues.feature)){
       setAlert(true);
@@ -151,8 +172,15 @@ function Update({}) {
       body: JSON.stringify(formValues),
     })
       .then((response) => response.json())
-      .then(navigate("/success"), (data) => console.log(data));
+      .then((data) => console.log(data));
   };
+
+  
+  const handleUpdateSuccessfully = (e) => {
+    setOpen(false);
+    navigate("/backend");
+  };
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -198,7 +226,23 @@ function Update({}) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div>
+        <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            数据已更新
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleUpdateSuccessfully}>确定</Button>
+        </DialogActions>
+      </Dialog>
+      <form onSubmit={handleSubmit}>
       <div className="box">
         <div className="left">
           <div className="leftpanel-1">
@@ -904,6 +948,10 @@ function Update({}) {
           <Button variant="contained" color="primary" type="submit">
             提交
           </Button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          <Button onClick={(e) => handleBack(e)} variant="contained" color="primary" type="submit">
+            返回
+          </Button>
         </div>
         <div style={{display:'inline-block',paddingTop:'2px'}}>
           {isAlerted && (
@@ -914,6 +962,8 @@ function Update({}) {
         </div>
       </div>
     </form>
+    </div>
+    
   );
 }
 

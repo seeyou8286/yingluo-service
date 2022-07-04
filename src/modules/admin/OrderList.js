@@ -8,15 +8,46 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
+let deleteId;
 
 function OrderList() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
+  const [open, setOpen] = React.useState(false);
+
 
   const handleUpdate = (e, row) => {
-    // console.log(row);
     e.preventDefault();
     navigate('/update', { state: row });
+  };
+
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleAgree = () => {
+    fetch("https://lispa.live/info/delete", {
+      method: "post",
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      body: `{"id":${deleteId}}`
+    })
+      .then((response) => response.json())
+      .then(setOpen(false), window.location.reload(false));
+  };
+
+  const handleDelete = (e, row) => {
+    // console.log(row);
+    e.preventDefault();
+    setOpen(true);
+    deleteId = row.id;
+    console.log(deleteId)
   };
 
   function initData() {
@@ -36,7 +67,29 @@ function OrderList() {
   }, []);
 
   return (
-    <TableContainer component={Paper}>
+    <div>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"您正在进行危险动作"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            亲，你确定要删除吗？
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>取消</Button>
+          <Button onClick={handleAgree} autoFocus>
+            确定
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -103,6 +156,8 @@ function OrderList() {
         </TableBody>
       </Table>
     </TableContainer>
+    </div>
+    
   );
 }
 export default OrderList;
