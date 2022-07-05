@@ -51,12 +51,29 @@ function OrderList() {
   };
 
   function initData() {
-    fetch("https://lispa.live/info/retrieve")
+    fetch("https://lispa.live/info/retrieve", {
+      method: "post",
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      body: `{"hours":"24"}`
+    })
       .then((response) => response.json())
       .then((datejson) => {
         setData(datejson);
       });
   }
+
+  const handleSearch = (e, hours) => {
+    fetch("https://lispa.live/info/retrieve", {
+      method: "post",
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      body: `{"hours":${hours}}`
+    })
+      .then((response) => response.json())
+      .then((datejson) => {
+        setData(datejson);
+      });
+  };
+
 
   useEffect(() => {
     console.log(sessionStorage.getItem("logged"))
@@ -68,6 +85,20 @@ function OrderList() {
 
   return (
     <div>
+      <div className="center">
+        <Button className = "button" variant="contained" color="primary" type="submit" onClick={(e) => handleSearch(e, "24")}>
+              过去24小时订单
+        </Button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <Button className = "button" variant="contained" color="primary" type="submit" onClick={(e) => handleSearch(e, "72")}>
+              过去3天订单
+        </Button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <Button className = "button" variant="contained" color="primary" type="submit" onClick={(e) => handleSearch(e, "720")}>
+              过去30天订单
+        </Button>
+      </div>
+      
       <Dialog
         open={open}
         onClose={handleClose}

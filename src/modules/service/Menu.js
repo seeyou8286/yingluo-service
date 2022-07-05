@@ -858,7 +858,7 @@ function Menu() {
             </Alert>
         </div>
         <div>
-          <Button variant="contained" color="primary" type="submit">
+          <Button variant="contained" color="primary" type="submit" style={{backgroundColor: "black"}}>
             提交
           </Button>
         </div>

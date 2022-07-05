@@ -13,6 +13,10 @@
     "."; 
 }
 
+.center{
+  text-align: center;
+}
+
 .imageScroll {
   min-height: 100vh;
   display: flex;
