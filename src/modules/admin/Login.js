@@ -47,6 +47,7 @@ export default function Login() {
     });
     if (data.get("username") === "admin" && data.get("password") === "admin") {
       sessionStorage.setItem("logged", true);
+      sessionStorage.setItem("username", data.get("username"));
       navigate("/backend");
     }else {
       setAlertMessage("用户名或者密码输入错误.");

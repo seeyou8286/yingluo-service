@@ -13,7 +13,9 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import config from '../../../config/default.json';
 
+const backendurl = config.backendurl;
 let deleteId;
 
 function OrderList() {
@@ -33,10 +35,11 @@ function OrderList() {
   };
 
   const handleAgreeDelete = () => {
-    fetch("https://lispa.live/info/delete", {
+    let username = sessionStorage.getItem("username");
+    fetch(`${backendurl}/delete`, {
       method: "post",
       headers: { "Content-Type": "application/json; charset=utf-8" },
-      body: `{"id":${deleteId}}`
+      body: `{"id":${deleteId},"updateby":"${username}"}`
     })
       .then((response) => response.json())
       .then(setOpen(false), window.location.reload(false));
@@ -51,7 +54,7 @@ function OrderList() {
   };
 
   function initData() {
-    fetch("https://lispa.live/info/retrieve", {
+    fetch(`${backendurl}/retrieve`, {
       method: "post",
       headers: { "Content-Type": "application/json; charset=utf-8" },
       body: `{"hours":"24"}`
@@ -63,7 +66,7 @@ function OrderList() {
   }
 
   const handleSearch = (e, hours) => {
-    fetch("https://lispa.live/info/retrieve", {
+    fetch(`${backendurl}/retrieve`, {
       method: "post",
       headers: { "Content-Type": "application/json; charset=utf-8" },
       body: `{"hours":${hours}}`
@@ -125,19 +128,22 @@ function OrderList() {
         <TableHead>
           <TableRow>
             <TableCell>序列号</TableCell>
-            <TableCell align="right">项目名称&nbsp;(数量)</TableCell>
-            <TableCell align="right">精油类型</TableCell>
-            <TableCell align="right">受力程度</TableCell>
-            <TableCell align="right">精油使用量</TableCell>
-            <TableCell align="right">客户电话</TableCell>
-            <TableCell align="right">技师</TableCell>
-            <TableCell align="right">客户姓名</TableCell>
-            <TableCell align="right">下单时间</TableCell>
-            <TableCell align="right">地址</TableCell>
-            <TableCell align="right">来源</TableCell>
-            <TableCell align="right">充值</TableCell>
-            <TableCell align="right">操作</TableCell>
-            <TableCell align="right">操作</TableCell>
+            <TableCell align="center">项目名称&nbsp;(数量)</TableCell>
+            <TableCell align="center">精油类型</TableCell>
+            <TableCell align="center">受力程度</TableCell>
+            <TableCell align="center">精油使用量</TableCell>
+            <TableCell align="center">客户电话</TableCell>
+            <TableCell align="center">技师</TableCell>
+            <TableCell align="center">客户姓名</TableCell>
+            <TableCell align="center">下单时间</TableCell>
+            <TableCell align="center">修改时间</TableCell>
+            <TableCell align="center">修改人</TableCell>
+            <TableCell align="center">地址</TableCell>
+            <TableCell align="center">来源</TableCell>
+            <TableCell align="center">充值</TableCell>
+            <TableCell align="center">其他</TableCell>
+            <TableCell align="center">更新</TableCell>
+            <TableCell align="center">删除</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -149,20 +155,23 @@ function OrderList() {
               <TableCell component="th" scope="row">
                 {row.id}
               </TableCell>
-              <TableCell component="th" scope="row">
+              <TableCell align="center" component="th" scope="row">
                 {row.item}
               </TableCell>
-              <TableCell align="right">{row.oiltype}</TableCell>
-              <TableCell align="right">{row.strength}</TableCell>
-              <TableCell align="right">{row.oilvolumn}</TableCell>
-              <TableCell align="right">{row.customerphoneno}</TableCell>
-              <TableCell align="right">{row.mastername}</TableCell>
-              <TableCell align="right">{row.customername}</TableCell>
-              <TableCell align="right">{row.orderdate}</TableCell>
-              <TableCell align="right">{row.place}</TableCell>
-              <TableCell align="right">{row.source}</TableCell>
-              <TableCell align="right">{row.topupamount}</TableCell>
-              <TableCell align="right">
+              <TableCell align="center">{row.oiltype}</TableCell>
+              <TableCell align="center">{row.strength}</TableCell>
+              <TableCell align="center">{row.oilvolumn}</TableCell>
+              <TableCell align="center">{row.customerphoneno}</TableCell>
+              <TableCell align="center">{row.mastername}</TableCell>
+              <TableCell align="center">{row.customername}</TableCell>
+              <TableCell align="center">{row.orderdate}</TableCell>
+              <TableCell align="center">{row.updateddate}</TableCell>
+              <TableCell align="center">{row.updateby}</TableCell>
+              <TableCell align="center">{row.place}</TableCell>
+              <TableCell align="center">{row.source}</TableCell>
+              <TableCell align="center">{row.topupamount}</TableCell>
+              <TableCell align="center">{row.others}</TableCell>
+              <TableCell align="center">
                 <Button
                   onClick={(e) => handleUpdate(e, row)}
                   variant="contained"
@@ -172,7 +181,7 @@ function OrderList() {
                   更改
                 </Button>
               </TableCell>
-              <TableCell align="right">
+              <TableCell align="center">
                 <Button
                   onClick={(e) => handleDelete(e, row)}
                   variant="contained"

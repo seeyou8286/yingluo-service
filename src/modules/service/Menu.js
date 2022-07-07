@@ -5,7 +5,6 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { pink, green } from "@mui/material/colors";
 import Alert from "@mui/material/Alert";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -13,16 +12,18 @@ import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import Link from "@mui/material/Link";
 import { useNavigate } from "react-router-dom";
-import { withTheme } from "@emotion/react";
 import Typography from "@mui/material/Typography";
+import config from '../../../config/default.json';
+
+const backendurl = config.backendurl;
 
 var sectionStyle = {
   backgroundImage: `url(${ServiceOrderPic})`,
 };
 
 const defaultValues = {
-  item: [false, false, false, false],
-  itemQuantity: [1, 1, 1, 1],
+  item: [false, false, false, false,false],
+  itemQuantity: [1, 1, 1, 1,1],
   feature: [false, false, false, false],
   featureQuantity: [1, 1, 1, 1],
   oilType: [false, false, false, false, false],
@@ -33,6 +34,7 @@ const defaultValues = {
   phoneNumber: "",
   customer: "",
   employee: "",
+  others:""
 };
 
 function allAreFalse(arr) {
@@ -45,6 +47,15 @@ function Menu() {
   const [formValues, setFormValues] = useState(defaultValues);
   const [isAlerted, setAlert] = useState("hidden");
   const [alertMessage, setAlertMessage] = useState("");
+
+  function isPhone(phone) {
+    var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+    if (!myreg.test(phone)) {
+        return false;
+    } else {
+        return true;
+    }
+   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -72,10 +83,14 @@ function Menu() {
       setAlert("visible");
       setAlertMessage("客户名必填哦！");
       return;
+    } else if (!isPhone(formValues.phoneNumber)) {
+      setAlert("visible");
+      setAlertMessage("手机号格式错误！");
+      return;
     }
 
     console.log(formValues);
-    fetch("https://lispa.live/info/save", {
+    fetch(`${backendurl}/save`, {
       method: "post",
       headers: { "Content-Type": "application/json; charset=utf-8" },
       body: JSON.stringify(formValues),
@@ -140,17 +155,17 @@ function Menu() {
                       <Checkbox
                         name="item"
                         checked={formValues.item[0]}
-                        onChange={(e) => handleMultiInput(e, "0", "4")}
+                        onChange={(e) => handleMultiInput(e, "0", "5")}
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
-                    label="采耳头疗【店铺招牌】      &nbsp;45分钟"
+                    label="【初之体验】 精油SPA      &nbsp;60分钟"
                   />
                 <Link href="/detail" underline="none" color="inherit" variant="caption">
                   详情
                 </Link>
                 </div>
-                <p className="price">188元</p>
+                <p className="price">298元</p>
                 <FormControl
                   sx={{ pr: 0, pt: 1, m: 0, minWidth: 5 }}
                   size="small"
@@ -190,17 +205,17 @@ function Menu() {
                       <Checkbox
                         name="item"
                         checked={formValues.item[1]}
-                        onChange={(e) => handleMultiInput(e, "1", "4")}
+                        onChange={(e) => handleMultiInput(e, "1", "5")}
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
-                    label="精油SPA 【精油舒压】      &nbsp;60分钟"
+                    label="【久坐之殇】肩背释压      &nbsp;45分钟"
                   />
                   <Link href="/detail" underline="none" color="inherit" variant="caption">
                   详情
                 </Link>
                 </div>
-                <p className="price">288元</p>
+                <p className="price">188元</p>
                 <FormControl
                   sx={{ pr: 0, pt: 1, m: 0, minWidth: 5 }}
                   size="small"
@@ -240,17 +255,17 @@ function Menu() {
                       <Checkbox
                         name="item"
                         checked={formValues.item[2]}
-                        onChange={(e) => handleMultiInput(e, "2", "4")}
+                        onChange={(e) => handleMultiInput(e, "2", "5")}
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
-                    label="肝胆排毒【熬夜必点】      &nbsp;90分钟"
+                    label="【元気臀震】强腰护肾      &nbsp;60分钟"
                   />
                   <Link href="/detail" underline="none" color="inherit" variant="caption">
                   详情
                 </Link>
                 </div>
-                <p className="price">488元</p>
+                <p className="price">398元</p>
                 <FormControl
                   sx={{ pl: 0, pt: 1, m: 0, minWidth: 5 }}
                   size="small"
@@ -290,11 +305,11 @@ function Menu() {
                       <Checkbox
                         name="item"
                         checked={formValues.item[3]}
-                        onChange={(e) => handleMultiInput(e, "3", "4")}
+                        onChange={(e) => handleMultiInput(e, "3", "5")}
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
-                    label="淋巴排毒【懒人必点】      &nbsp;90分钟"
+                    label="【熬夜必点】淋巴净排     &nbsp;90分钟"
                   />
                   <Link href="/detail" underline="none" color="inherit" variant="caption">
                   详情
@@ -302,7 +317,7 @@ function Menu() {
                 </div>
                 <p className="price">488元</p>
                 <FormControl
-                  sx={{ pl: 0, pt: 1, m: 0, minWidth: 5, fontSize: 10 }}
+                  sx={{ pl: 0, pt: 1, m: 0, minWidth: 5 }}
                   size="small"
                 >
                   <InputLabel sx={{ fontSize: 10, pt: 1 }}>数量</InputLabel>
@@ -311,6 +326,56 @@ function Menu() {
                     name="itemQuantity"
                     value={formValues.itemQuantity[3]}
                     onChange={(e) => handleMultipleInputValue(e, "3", "item")}
+                  >
+                    <MenuItem key="1" value="1">
+                      1
+                    </MenuItem>
+                    <MenuItem key="2" value="2">
+                      2
+                    </MenuItem>
+                    <MenuItem key="3 " value="3">
+                      3
+                    </MenuItem>
+                    <MenuItem key="4 " value="4">
+                      4
+                    </MenuItem>
+                    <MenuItem key="5 " value="5">
+                      5
+                    </MenuItem>
+                    <MenuItem key="6 " value="6">
+                      6
+                    </MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
+              <div className="rowDirection">
+                <div className="item">
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        name="item"
+                        checked={formValues.item[4]}
+                        onChange={(e) => handleMultiInput(e, "4", "5")}
+                        sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                      />
+                    }
+                    label="【悠然舒展】奈良古态      &nbsp;90分钟"
+                  />
+                  <Link href="/detail" underline="none" color="inherit" variant="caption">
+                  详情
+                </Link>
+                </div>
+                <p className="price">588元</p>
+                <FormControl
+                  sx={{ pl: 0, pt: 1, m: 0, minWidth: 5 }}
+                  size="small"
+                >
+                  <InputLabel sx={{ fontSize: 10, pt: 1 }}>数量</InputLabel>
+                  <Select
+                    sx={{ fontSize: 10 }}
+                    name="itemQuantity"
+                    value={formValues.itemQuantity[4]}
+                    onChange={(e) => handleMultipleInputValue(e, "4", "item")}
                   >
                     <MenuItem key="1" value="1">
                       1
@@ -349,14 +414,14 @@ function Menu() {
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
-                    label="大阪樱花【店铺特色】      &nbsp;90分钟"
+                    label="【奢宠女神】大阪樱花      &nbsp;80分钟"
                   />
                   <Link href="/detail" underline="none" color="inherit" variant="caption">
                   详情
                 </Link>
                 </div>
 
-                <p className="price">588元</p>
+                <p className="price">628元</p>
                 <FormControl
                   sx={{ pl: 0, pt: 1, m: 0, minWidth: 5, fontSize: 10 }}
                   size="small"
@@ -402,13 +467,13 @@ function Menu() {
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
-                    label="富士山下【女神奢宠】      100分钟"
+                    label="【店铺爆款】京都神乐      90分钟"
                   />
                   <Link href="/detail" underline="none" color="inherit" variant="caption">
                   详情
                 </Link>
                 </div>
-                <p className="price">618元</p>
+                <p className="price">688元</p>
                 <FormControl
                   sx={{ pl: 0, pt: 1, m: 0, minWidth: 5, fontSize: 10 }}
                   size="small"
@@ -454,13 +519,13 @@ function Menu() {
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
-                    label="京都礼遇【店铺爆款】      100分钟"
+                    label="【净体祛湿】草津秘汤      120分钟"
                   />
                   <Link href="/detail" underline="none" color="inherit" variant="caption">
                   详情
                 </Link>
                 </div>
-                <p className="price">688元</p>
+                <p className="price">888元</p>
                 <FormControl
                   sx={{ pl: 0, pt: 1, m: 0, minWidth: 5, fontSize: 10 }}
                   size="small"
@@ -506,13 +571,13 @@ function Menu() {
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
-                    label="东京の热【男士尊享】      100分钟"
+                    label="【倾心奢享】东京花筏      90分钟"
                   />
                   <Link href="/detail" underline="none" color="inherit" variant="caption">
                   详情
                 </Link>
                 </div>
-                <p className="price">888元</p>
+                <p className="price">988元</p>
                 <FormControl
                   sx={{ pl: 0, pt: 1, m: 0, minWidth: 5, fontSize: 10 }}
                   size="small"
@@ -574,7 +639,7 @@ function Menu() {
                       sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                     />
                   }
-                  label="艾草生姜【植物芳疗】"
+                  label="甜橙【保湿肌肤 • 平衡肌脂】"
                 />
               </div>
               <div>
@@ -587,7 +652,7 @@ function Menu() {
                       sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                     />
                   }
-                  label="约会必备【魅力增强】"
+                  label="茉莉花【魅力增强】"
                 />
               </div>
               <div>
@@ -600,7 +665,7 @@ function Menu() {
                       sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                     />
                   }
-                  label="玫瑰润养【温和滋润 舒缓紧致】"
+                  label="薰衣草【镇静安神 • 放松心情】"
                 />
               </div>
               <div>
@@ -830,22 +895,32 @@ function Menu() {
           </div>
           <div className="rightLastRow">
             <TextField
+              style={{width:"210px"}}
               name="phoneNumber"
-              label="预定手机号(必填)"
+              label="手机号(必填)"
               value={formValues.phoneNumber}
               onChange={handleInputChange}
             />
 
             <TextField
+            style={{width:"210px"}}
               name="customer"
               label="客户名(必填)"
               value={formValues.customer}
               onChange={handleInputChange}
             />
             <TextField
+            style={{width:"210px"}}
               name="employee"
               label="理疗师"
               value={formValues.employee}
+              onChange={handleInputChange}
+            />
+            <TextField
+            style={{width:"210px"}}
+              name="others"
+              label="其他"
+              value={formValues.others}
               onChange={handleInputChange}
             />
           </div>
