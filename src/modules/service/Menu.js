@@ -10,8 +10,8 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
-import Link from "@mui/material/Link";
-import { useNavigate } from "react-router-dom";
+// import Link from "@mui/material/Link";
+import { Link, useNavigate } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import config from '../../../config/default.json';
 
@@ -166,9 +166,9 @@ function Menu(props) {
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
-                    label="【初之体验】 精油SPA      &nbsp;60分钟"
+                    label="【初之体验】 精油SPA&nbsp;&nbsp;60分钟"
                   />
-                <Link href="/detail" underline="none" color="inherit" variant="caption">
+                <Link to="/detail" state={{item:"精油SPA"}} style={{textDecoration:'none', fontSize:"11px", color:"inherit"}}>
                   详情
                 </Link>
                 </div>
@@ -216,9 +216,9 @@ function Menu(props) {
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
-                    label="【久坐之殇】肩背释压      &nbsp;45分钟"
+                    label="【久坐之殇】肩背释压&nbsp;&nbsp;45分钟"
                   />
-                  <Link href="/detail" underline="none" color="inherit" variant="caption">
+                  <Link to="/detail" state={{item:"肩背释压"}} style={{textDecoration:'none', fontSize:"11px", color:"inherit"}}>
                   详情
                 </Link>
                 </div>
@@ -268,7 +268,7 @@ function Menu(props) {
                     }
                     label="【元気臀震】强腰护肾      &nbsp;60分钟"
                   />
-                  <Link href="/detail" underline="none" color="inherit" variant="caption">
+                  <Link to="/detail" state={{item:"强腰护肾"}} style={{textDecoration:'none', fontSize:"11px", color:"inherit"}}>
                   详情
                 </Link>
                 </div>
@@ -318,7 +318,7 @@ function Menu(props) {
                     }
                     label="【熬夜必点】淋巴净排     &nbsp;90分钟"
                   />
-                  <Link href="/detail" underline="none" color="inherit" variant="caption">
+                 <Link to="/detail" state={{item:"淋巴净排"}} style={{textDecoration:'none', fontSize:"11px", color:"inherit"}}>
                   详情
                 </Link>
                 </div>
@@ -368,7 +368,7 @@ function Menu(props) {
                     }
                     label="【悠然舒展】奈良古态      &nbsp;90分钟"
                   />
-                  <Link href="/detail" underline="none" color="inherit" variant="caption">
+                  <Link to="/detail" state={{item:"奈良古态"}} style={{textDecoration:'none', fontSize:"11px", color:"inherit"}}>
                   详情
                 </Link>
                 </div>
@@ -407,7 +407,6 @@ function Menu(props) {
               </div>
             </div>
           </div>
-
           <div className="leftpanel-2">
             <div>
               <div className="rowDirection">
@@ -421,9 +420,9 @@ function Menu(props) {
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
-                    label="【奢宠女神】大阪樱花      &nbsp;80分钟"
+                    label="【奢宠女神】大阪樱花&nbsp;&nbsp;80分钟"
                   />
-                  <Link href="/detail" underline="none" color="inherit" variant="caption">
+                  <Link to="/detail" state={{item:"大阪樱花"}} style={{textDecoration:'none', fontSize:"11px", color:"inherit"}}>
                   详情
                 </Link>
                 </div>
@@ -474,9 +473,9 @@ function Menu(props) {
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
-                    label="【店铺爆款】京都神乐      90分钟"
+                    label="【店铺爆款】京都神乐&nbsp;&nbsp;90分钟"
                   />
-                  <Link href="/detail" underline="none" color="inherit" variant="caption">
+                  <Link to="/detail" state={{item:"京都神乐"}} style={{textDecoration:'none', fontSize:"11px", color:"inherit"}}>
                   详情
                 </Link>
                 </div>
@@ -528,7 +527,7 @@ function Menu(props) {
                     }
                     label="【净体祛湿】草津秘汤      120分钟"
                   />
-                  <Link href="/detail" underline="none" color="inherit" variant="caption">
+                   <Link to="/detail" state={{item:"草津秘汤"}} style={{textDecoration:'none', fontSize:"11px", color:"inherit"}}>
                   详情
                 </Link>
                 </div>
@@ -578,9 +577,9 @@ function Menu(props) {
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
-                    label="【倾心奢享】东京花筏      90分钟"
+                    label="【倾心奢享】东京花筏&nbsp;&nbsp;90分钟"
                   />
-                  <Link href="/detail" underline="none" color="inherit" variant="caption">
+                 <Link to="/detail" state={{item:"东京花筏"}} style={{textDecoration:'none', fontSize:"11px", color:"inherit"}}>
                   详情
                 </Link>
                 </div>

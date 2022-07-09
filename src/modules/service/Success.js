@@ -4,22 +4,24 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useLocation, useNavigate } from "react-router-dom";
 
+
 var sectionStyle = {
   backgroundImage: `url(${SuccessPage})`,
   paddingTop:"300px"
   
 };
 
-function Suceess() {
+function Suceess(props) {
   const navigate = useNavigate();
-  const {state} = useLocation();
+
+  console.log(props)
   return(
   <div className="box" style={sectionStyle}>
     <div>
       <Typography variant="h4" style={{ color: "#e7e7e7",writingMode: "vertical-lr" }}>您已成功提交</Typography>
     </div>
     <div>
-      <Button onClick={(e) => {state=="南山别墅店" ? navigate("/ns"):navigate("/sk")}} variant="h4" type="submit" style={{margin:"55px", writingMode: "vertical-lr",backgroundColor: "#e7e7e7"}}>
+      <Button onClick={(e) => {navigate(-1)}} variant="h4" type="submit" style={{margin:"55px", writingMode: "vertical-lr",backgroundColor: "#e7e7e7"}}>
         返<br/>
         回
       </Button>
