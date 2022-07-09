@@ -4,14 +4,15 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import React, { useState } from "react";
 import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import Alert from "@mui/material/Alert";
+import config from '../../../config/default.json';
+
+const backendurl = config.backendurl;
 
 function Copyright(props) {
   return (
@@ -41,18 +42,30 @@ export default function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      username: data.get("username"),
-      password: data.get("password"),
-    });
-    if (data.get("username") === "admin" && data.get("password") === "admin") {
-      sessionStorage.setItem("logged", true);
-      sessionStorage.setItem("username", data.get("username"));
-      navigate("/backend");
-    }else {
-      setAlertMessage("用户名或者密码输入错误.");
-      setAlert(true);
-    }
+    let username = data.get("username");
+    let password = data.get("password");
+
+    fetch(`${backendurl}/authenticate`, {
+      method: "post",
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      body: `{"username":"${username}","password":"${password}"}`
+    })
+      .then((response) => response.json())
+      .then(
+        (data) => {
+          if(data[0]) {
+            let location = data[0].location;
+            let username = data[0].username;
+            sessionStorage.setItem("logged", true);
+            sessionStorage.setItem("username", username);
+            sessionStorage.setItem("location", location);
+            navigate("/backend");
+          }else {
+            setAlertMessage("用户名或者密码输入错误.");
+            setAlert(true);
+          }
+        }
+        );
   };
 
   return (

@@ -22,7 +22,7 @@ function OrderList() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [open, setOpen] = React.useState(false);
-
+  let place = sessionStorage.getItem("location")
 
   const handleUpdate = (e, row) => {
     e.preventDefault();
@@ -57,7 +57,7 @@ function OrderList() {
     fetch(`${backendurl}/retrieve`, {
       method: "post",
       headers: { "Content-Type": "application/json; charset=utf-8" },
-      body: `{"hours":"24"}`
+      body: `{"hours":"24","place":"${place}"}`
     })
       .then((response) => response.json())
       .then((datejson) => {
@@ -69,7 +69,7 @@ function OrderList() {
     fetch(`${backendurl}/retrieve`, {
       method: "post",
       headers: { "Content-Type": "application/json; charset=utf-8" },
-      body: `{"hours":${hours}}`
+      body: `{"hours":${hours},"place":"${place}"}`
     })
       .then((response) => response.json())
       .then((datejson) => {
@@ -129,6 +129,7 @@ function OrderList() {
           <TableRow>
             <TableCell>序列号</TableCell>
             <TableCell align="center">项目名称&nbsp;(数量)</TableCell>
+            <TableCell align="center">其他</TableCell>
             <TableCell align="center">精油类型</TableCell>
             <TableCell align="center">受力程度</TableCell>
             <TableCell align="center">精油使用量</TableCell>
@@ -141,7 +142,6 @@ function OrderList() {
             <TableCell align="center">地址</TableCell>
             <TableCell align="center">来源</TableCell>
             <TableCell align="center">充值</TableCell>
-            <TableCell align="center">其他</TableCell>
             <TableCell align="center">更新</TableCell>
             <TableCell align="center">删除</TableCell>
           </TableRow>
@@ -158,6 +158,7 @@ function OrderList() {
               <TableCell align="center" component="th" scope="row">
                 {row.item}
               </TableCell>
+              <TableCell align="center">{row.others}</TableCell>
               <TableCell align="center">{row.oiltype}</TableCell>
               <TableCell align="center">{row.strength}</TableCell>
               <TableCell align="center">{row.oilvolumn}</TableCell>
@@ -170,7 +171,6 @@ function OrderList() {
               <TableCell align="center">{row.place}</TableCell>
               <TableCell align="center">{row.source}</TableCell>
               <TableCell align="center">{row.topupamount}</TableCell>
-              <TableCell align="center">{row.others}</TableCell>
               <TableCell align="center">
                 <Button
                   onClick={(e) => handleUpdate(e, row)}

@@ -65,7 +65,8 @@ function Update({}) {
     customer: "",
     employee: "",
     updateby:"",
-    others:""
+    others:"",
+    place:""
   };
 
   function isPhone(phone) {
@@ -87,6 +88,7 @@ function Update({}) {
   defaultValues.others = others;
   defaultValues.updateby = sessionStorage.getItem("username");
   defaultValues.id = id;
+  defaultValues.place = place;
   for (let i in oilTypeName) {
     if (oilTypeName[i] === oiltype) {
       defaultValues.oilType[i]=true;

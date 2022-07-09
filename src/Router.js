@@ -11,7 +11,8 @@ class Router extends React.Component {
   render() {
     return (
       <Routes>
-        <Route path="menu" element={<Menu/>} />
+        <Route path="ns" element={<Menu place="南山别墅店"/>} />
+        <Route path="sk" element={<Menu place="蛇口别墅店"/>} />
         <Route path="update" element={<Update/>} />
         <Route path="success" element={<Success/>} />
         <Route path="detail" element={<Detail/>} />

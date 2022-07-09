@@ -1,5 +1,5 @@
 import "../../App.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ServiceOrderPic from "../../assets/menu.jpeg";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
@@ -21,32 +21,39 @@ var sectionStyle = {
   backgroundImage: `url(${ServiceOrderPic})`,
 };
 
-const defaultValues = {
-  item: [false, false, false, false,false],
-  itemQuantity: [1, 1, 1, 1,1],
-  feature: [false, false, false, false],
-  featureQuantity: [1, 1, 1, 1],
-  oilType: [false, false, false, false, false],
-  topup: [false, false, false],
-  source: [false, false, false, false, false, false, false],
-  oilVolumn: [false, false, false],
-  strength: [false, false, false],
-  phoneNumber: "",
-  customer: "",
-  employee: "",
-  others:""
-};
+
 
 function allAreFalse(arr) {
   return arr.every(element => element === false);
 }
 
-function Menu() {
-  const navigate = useNavigate();
+function Menu(props) {
+  const defaultValues = {
+    item: [false, false, false, false,false],
+    itemQuantity: [1, 1, 1, 1,1],
+    feature: [false, false, false, false],
+    featureQuantity: [1, 1, 1, 1],
+    oilType: [false, false, false, false, false],
+    topup: [false, false, false],
+    source: [false, false, false, false, false, false, false],
+    oilVolumn: [false, false, false],
+    strength: [false, false, false],
+    phoneNumber: "",
+    customer: "",
+    employee: "",
+    others:"",
+    place:""
+  };
 
+  const navigate = useNavigate();
   const [formValues, setFormValues] = useState(defaultValues);
   const [isAlerted, setAlert] = useState("hidden");
   const [alertMessage, setAlertMessage] = useState("");
+  
+
+  useEffect(() => {
+    defaultValues.place = props.place
+  },[]);
 
   function isPhone(phone) {
     var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
@@ -59,7 +66,7 @@ function Menu() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(allAreFalse(formValues.item) && allAreFalse(formValues.feature)){
+    if(allAreFalse(formValues.item) && allAreFalse(formValues.feature)&&!formValues.others){
       setAlert("visible");
       setAlertMessage("请选择项目,亲");
       return;
@@ -96,7 +103,7 @@ function Menu() {
       body: JSON.stringify(formValues),
     })
       .then((response) => response.json())
-      .then(navigate("/success"), (data) => console.log(data));
+      .then(navigate('/success',{state:props.place}));
   };
 
   const handleInputChange = (e) => {
@@ -143,7 +150,7 @@ function Menu() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form id = "myform" onSubmit={handleSubmit}>
       <div className="box" style={sectionStyle}>
         <div className="left">
           <div className="leftpanel-1">
