@@ -245,7 +245,7 @@ const Detail = (props) => {
                 <TableCell>原价（元）</TableCell>
                 <TableCell align="right">8000+4000/6.6折</TableCell>
                 <TableCell align="right">5000+2000/7.1折</TableCell>
-                <TableCell align="right">30000+1000/7.5</TableCell>
+                <TableCell align="right">3000+1000/7.5</TableCell>
                 {/* <TableCell align="right">线上</TableCell> */}
               </TableRow>
             </TableHead>
@@ -253,8 +253,8 @@ const Detail = (props) => {
               <TableRow>
                 <TableCell component="th" scope="row">{project.origin}</TableCell>
                 <TableCell align="right">{project.discount1}</TableCell>
-                <TableCell align="right">{project.discount1}</TableCell>
-                <TableCell align="right">{project.discount1}</TableCell>
+                <TableCell align="right">{project.discount2}</TableCell>
+                <TableCell align="right">{project.discount3}</TableCell>
                 {/* <TableCell align="right">{project.online}</TableCell> */}
               </TableRow>
             </TableBody>
