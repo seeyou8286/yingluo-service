@@ -25,30 +25,32 @@ function allAreFalse(arr) {
   return arr.every((element) => element === false);
 }
 
-function Menu(props) {
-  const defaultValues = {
-    item: [false, false, false, false, false],
-    itemQuantity: [1, 1, 1, 1, 1],
-    feature: [false, false, false, false],
-    featureQuantity: [1, 1, 1, 1],
-    oilType: [false, false, false, false, false],
-    topup: [false, false, false],
-    source: [false, false, false, false, false, false, false],
-    oilVolumn: [false, false, false],
-    strength: [false, false, false],
-    phoneNumber: "",
-    customer: "",
-    employee: "",
-    others: "",
-    place: "",
-  };
+var defaultValues = {
+  item: [false, false, false, false, false],
+  itemQuantity: [1, 1, 1, 1, 1],
+  feature: [false, false, false, false],
+  featureQuantity: [1, 1, 1, 1],
+  oilType: [false, false, false, false, false],
+  topup: [false, false, false],
+  source: [false, false, false, false, false, false, false],
+  oilVolumn: [false, false, false],
+  strength: [false, false, false],
+  phoneNumber: "",
+  customer: "",
+  employee: "",
+  others: "",
+  place: "",
+};
 
+
+function Menu(props) {
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState(defaultValues);
   const [isAlerted, setAlert] = useState("hidden");
   const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
+    console.log(defaultValues)
     defaultValues.place = props.place;
   }, []);
 
@@ -97,7 +99,7 @@ function Menu(props) {
       return;
     }
 
-    console.log(formValues);
+    
     fetch(`${backendurl}/save`, {
       method: "post",
       headers: { "Content-Type": "application/json; charset=utf-8" },
@@ -107,12 +109,30 @@ function Menu(props) {
       .then((data) => {
         if(data.status == 'success') {
           navigate("/success");
+          defaultValues = {
+            item: [false, false, false, false, false],
+            itemQuantity: [1, 1, 1, 1, 1],
+            feature: [false, false, false, false],
+            featureQuantity: [1, 1, 1, 1],
+            oilType: [false, false, false, false, false],
+            topup: [false, false, false],
+            source: [false, false, false, false, false, false, false],
+            oilVolumn: [false, false, false],
+            strength: [false, false, false],
+            phoneNumber: "",
+            customer: "",
+            employee: "",
+            others: "",
+            place: "",
+          };
         } else {
           navigate("/fail");
+          defaultValues = formValues;
         }
       })
       .catch((err) => {
         navigate("/fail");
+        defaultValues = formValues;
       });
   };
 
