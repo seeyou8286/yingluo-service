@@ -13,7 +13,7 @@ import InputLabel from "@mui/material/InputLabel";
 // import Link from "@mui/material/Link";
 import { Link, useNavigate } from "react-router-dom";
 import Typography from "@mui/material/Typography";
-import config from '../../../config/default.json';
+import config from "../../../config/default.json";
 
 const backendurl = config.backendurl;
 
@@ -21,16 +21,14 @@ var sectionStyle = {
   backgroundImage: `url(${ServiceOrderPic})`,
 };
 
-
-
 function allAreFalse(arr) {
-  return arr.every(element => element === false);
+  return arr.every((element) => element === false);
 }
 
 function Menu(props) {
   const defaultValues = {
-    item: [false, false, false, false,false],
-    itemQuantity: [1, 1, 1, 1,1],
+    item: [false, false, false, false, false],
+    itemQuantity: [1, 1, 1, 1, 1],
     feature: [false, false, false, false],
     featureQuantity: [1, 1, 1, 1],
     oilType: [false, false, false, false, false],
@@ -41,32 +39,35 @@ function Menu(props) {
     phoneNumber: "",
     customer: "",
     employee: "",
-    others:"",
-    place:""
+    others: "",
+    place: "",
   };
 
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState(defaultValues);
   const [isAlerted, setAlert] = useState("hidden");
   const [alertMessage, setAlertMessage] = useState("");
-  
 
   useEffect(() => {
-    defaultValues.place = props.place
-  },[]);
+    defaultValues.place = props.place;
+  }, []);
 
   function isPhone(phone) {
     var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
     if (!myreg.test(phone)) {
-        return false;
+      return false;
     } else {
-        return true;
+      return true;
     }
-   }
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(allAreFalse(formValues.item) && allAreFalse(formValues.feature)&&!formValues.others){
+    if (
+      allAreFalse(formValues.item) &&
+      allAreFalse(formValues.feature) &&
+      !formValues.others
+    ) {
       setAlert("visible");
       setAlertMessage("请选择项目,亲");
       return;
@@ -74,15 +75,15 @@ function Menu(props) {
       setAlert("visible");
       setAlertMessage("请选择精油,亲");
       return;
-    }else if (allAreFalse(formValues.strength)) {
+    } else if (allAreFalse(formValues.strength)) {
       setAlert("visible");
       setAlertMessage("请选择受力强度,亲");
       return;
-    }else if (allAreFalse(formValues.oilVolumn)) {
+    } else if (allAreFalse(formValues.oilVolumn)) {
       setAlert("visible");
       setAlertMessage("请选择精油使用量,亲");
       return;
-    }else if (formValues.phoneNumber == "") {
+    } else if (formValues.phoneNumber == "") {
       setAlert("visible");
       setAlertMessage("手机号必填哦！");
       return;
@@ -103,7 +104,16 @@ function Menu(props) {
       body: JSON.stringify(formValues),
     })
       .then((response) => response.json())
-      .then(navigate('/success',{state:props.place}));
+      .then((data) => {
+        if(data.status == 'success') {
+          navigate("/success");
+        } else {
+          navigate("/fail");
+        }
+      })
+      .catch((err) => {
+        navigate("/fail");
+      });
   };
 
   const handleInputChange = (e) => {
@@ -150,14 +160,14 @@ function Menu(props) {
   };
 
   return (
-    <form id = "myform" onSubmit={handleSubmit}>
+    <form id="myform" onSubmit={handleSubmit}>
       <div className="box" style={sectionStyle}>
         <div className="left">
           <div className="leftpanel-1">
             <div>
               <div className="rowDirection">
                 <div className="item">
-                <FormControlLabel
+                  <FormControlLabel
                     control={
                       <Checkbox
                         name="item"
@@ -168,9 +178,17 @@ function Menu(props) {
                     }
                     label="【初之体验】 精油SPA&nbsp;&nbsp;60分钟"
                   />
-                <Link to="/detail" state={{item:"精油SPA"}} style={{textDecoration:'none', fontSize:"11px", color:"inherit"}}>
-                  详情
-                </Link>
+                  <Link
+                    to="/detail"
+                    state={{ item: "精油SPA" }}
+                    style={{
+                      textDecoration: "none",
+                      fontSize: "11px",
+                      color: "inherit",
+                    }}
+                  >
+                    详情
+                  </Link>
                 </div>
                 <p className="price">298元</p>
                 <FormControl
@@ -218,9 +236,17 @@ function Menu(props) {
                     }
                     label="【久坐之殇】肩背释压&nbsp;&nbsp;45分钟"
                   />
-                  <Link to="/detail" state={{item:"肩背释压"}} style={{textDecoration:'none', fontSize:"11px", color:"inherit"}}>
-                  详情
-                </Link>
+                  <Link
+                    to="/detail"
+                    state={{ item: "肩背释压" }}
+                    style={{
+                      textDecoration: "none",
+                      fontSize: "11px",
+                      color: "inherit",
+                    }}
+                  >
+                    详情
+                  </Link>
                 </div>
                 <p className="price">188元</p>
                 <FormControl
@@ -268,9 +294,17 @@ function Menu(props) {
                     }
                     label="【元気臀震】强腰护肾      &nbsp;60分钟"
                   />
-                  <Link to="/detail" state={{item:"强腰护肾"}} style={{textDecoration:'none', fontSize:"11px", color:"inherit"}}>
-                  详情
-                </Link>
+                  <Link
+                    to="/detail"
+                    state={{ item: "强腰护肾" }}
+                    style={{
+                      textDecoration: "none",
+                      fontSize: "11px",
+                      color: "inherit",
+                    }}
+                  >
+                    详情
+                  </Link>
                 </div>
                 <p className="price">398元</p>
                 <FormControl
@@ -318,9 +352,17 @@ function Menu(props) {
                     }
                     label="【熬夜必点】淋巴净排     &nbsp;90分钟"
                   />
-                 <Link to="/detail" state={{item:"淋巴净排"}} style={{textDecoration:'none', fontSize:"11px", color:"inherit"}}>
-                  详情
-                </Link>
+                  <Link
+                    to="/detail"
+                    state={{ item: "淋巴净排" }}
+                    style={{
+                      textDecoration: "none",
+                      fontSize: "11px",
+                      color: "inherit",
+                    }}
+                  >
+                    详情
+                  </Link>
                 </div>
                 <p className="price">488元</p>
                 <FormControl
@@ -368,9 +410,17 @@ function Menu(props) {
                     }
                     label="【悠然舒展】奈良古态      &nbsp;90分钟"
                   />
-                  <Link to="/detail" state={{item:"奈良古态"}} style={{textDecoration:'none', fontSize:"11px", color:"inherit"}}>
-                  详情
-                </Link>
+                  <Link
+                    to="/detail"
+                    state={{ item: "奈良古态" }}
+                    style={{
+                      textDecoration: "none",
+                      fontSize: "11px",
+                      color: "inherit",
+                    }}
+                  >
+                    详情
+                  </Link>
                 </div>
                 <p className="price">588元</p>
                 <FormControl
@@ -422,9 +472,17 @@ function Menu(props) {
                     }
                     label="【奢宠女神】大阪樱花&nbsp;&nbsp;80分钟"
                   />
-                  <Link to="/detail" state={{item:"大阪樱花"}} style={{textDecoration:'none', fontSize:"11px", color:"inherit"}}>
-                  详情
-                </Link>
+                  <Link
+                    to="/detail"
+                    state={{ item: "大阪樱花" }}
+                    style={{
+                      textDecoration: "none",
+                      fontSize: "11px",
+                      color: "inherit",
+                    }}
+                  >
+                    详情
+                  </Link>
                 </div>
 
                 <p className="price">628元</p>
@@ -475,9 +533,17 @@ function Menu(props) {
                     }
                     label="【店铺爆款】京都神乐&nbsp;&nbsp;90分钟"
                   />
-                  <Link to="/detail" state={{item:"京都神乐"}} style={{textDecoration:'none', fontSize:"11px", color:"inherit"}}>
-                  详情
-                </Link>
+                  <Link
+                    to="/detail"
+                    state={{ item: "京都神乐" }}
+                    style={{
+                      textDecoration: "none",
+                      fontSize: "11px",
+                      color: "inherit",
+                    }}
+                  >
+                    详情
+                  </Link>
                 </div>
                 <p className="price">688元</p>
                 <FormControl
@@ -527,9 +593,17 @@ function Menu(props) {
                     }
                     label="【净体祛湿】草津秘汤      120分钟"
                   />
-                   <Link to="/detail" state={{item:"草津秘汤"}} style={{textDecoration:'none', fontSize:"11px", color:"inherit"}}>
-                  详情
-                </Link>
+                  <Link
+                    to="/detail"
+                    state={{ item: "草津秘汤" }}
+                    style={{
+                      textDecoration: "none",
+                      fontSize: "11px",
+                      color: "inherit",
+                    }}
+                  >
+                    详情
+                  </Link>
                 </div>
                 <p className="price">888元</p>
                 <FormControl
@@ -579,9 +653,17 @@ function Menu(props) {
                     }
                     label="【倾心奢享】东京花筏&nbsp;&nbsp;90分钟"
                   />
-                 <Link to="/detail" state={{item:"东京花筏"}} style={{textDecoration:'none', fontSize:"11px", color:"inherit"}}>
-                  详情
-                </Link>
+                  <Link
+                    to="/detail"
+                    state={{ item: "东京花筏" }}
+                    style={{
+                      textDecoration: "none",
+                      fontSize: "11px",
+                      color: "inherit",
+                    }}
+                  >
+                    详情
+                  </Link>
                 </div>
                 <p className="price">988元</p>
                 <FormControl
@@ -784,10 +866,15 @@ function Menu(props) {
                   name="source"
                   checked={formValues.source[0]}
                   onChange={(e) => handleSingleInput(e, "0", "7")}
-                  sx={{color:"white", "& .MuiSvgIcon-root": { fontSize: 25,color:"white" } }}
+                  sx={{
+                    color: "white",
+                    "& .MuiSvgIcon-root": { fontSize: 25, color: "white" },
+                  }}
                 />
               }
-              label={<Typography style={{color:"white"}}>大众点评</Typography>}
+              label={
+                <Typography style={{ color: "white" }}>大众点评</Typography>
+              }
             />
             <FormControlLabel
               className="vertical"
@@ -797,10 +884,13 @@ function Menu(props) {
                   checked={formValues.source[1]}
                   onChange={(e) => handleSingleInput(e, "1", "7")}
                   color="success"
-                  sx={{color:"white", "& .MuiSvgIcon-root": { fontSize: 25,color:"white" } }}
+                  sx={{
+                    color: "white",
+                    "& .MuiSvgIcon-root": { fontSize: 25, color: "white" },
+                  }}
                 />
               }
-              label={<Typography style={{color:"white"}}>美团</Typography>}
+              label={<Typography style={{ color: "white" }}>美团</Typography>}
             />
             <FormControlLabel
               className="vertical"
@@ -809,10 +899,13 @@ function Menu(props) {
                   name="source"
                   checked={formValues.source[2]}
                   onChange={(e) => handleSingleInput(e, "2", "7")}
-                  sx={{color:"white", "& .MuiSvgIcon-root": { fontSize: 25,color:"white" } }}
+                  sx={{
+                    color: "white",
+                    "& .MuiSvgIcon-root": { fontSize: 25, color: "white" },
+                  }}
                 />
               }
-              label={<Typography style={{color:"white"}}>小红书</Typography>}
+              label={<Typography style={{ color: "white" }}>小红书</Typography>}
             />
             <FormControlLabel
               className="vertical"
@@ -821,10 +914,17 @@ function Menu(props) {
                   name="source"
                   checked={formValues.source[3]}
                   onChange={(e) => handleSingleInput(e, "3", "7")}
-                  sx={{color:"white", "& .MuiSvgIcon-root": { fontSize: 25,color:"white" } }}
+                  sx={{
+                    color: "white",
+                    "& .MuiSvgIcon-root": { fontSize: 25, color: "white" },
+                  }}
                 />
               }
-              label={<Typography style={{color:"white",marginRight:"10px"}}>抖音</Typography>}
+              label={
+                <Typography style={{ color: "white", marginRight: "10px" }}>
+                  抖音
+                </Typography>
+              }
             />
 
             <FormControlLabel
@@ -834,10 +934,13 @@ function Menu(props) {
                   name="source"
                   checked={formValues.source[4]}
                   onChange={(e) => handleSingleInput(e, "4", "7")}
-                  sx={{color:"white", "& .MuiSvgIcon-root": { fontSize: 25,color:"white" } }}
+                  sx={{
+                    color: "white",
+                    "& .MuiSvgIcon-root": { fontSize: 25, color: "white" },
+                  }}
                 />
               }
-              label={<Typography style={{color:"white"}}>会员</Typography>}
+              label={<Typography style={{ color: "white" }}>会员</Typography>}
             />
             <FormControlLabel
               className="vertical"
@@ -846,10 +949,15 @@ function Menu(props) {
                   name="source"
                   checked={formValues.source[5]}
                   onChange={(e) => handleSingleInput(e, "5", "7")}
-                  sx={{color:"white", "& .MuiSvgIcon-root": { fontSize: 25,color:"white" } }}
+                  sx={{
+                    color: "white",
+                    "& .MuiSvgIcon-root": { fontSize: 25, color: "white" },
+                  }}
                 />
               }
-              label={<Typography style={{color:"white"}}>朋友介绍</Typography>}
+              label={
+                <Typography style={{ color: "white" }}>朋友介绍</Typography>
+              }
             />
             <FormControlLabel
               className="vertical"
@@ -858,10 +966,13 @@ function Menu(props) {
                   name="source"
                   checked={formValues.source[6]}
                   onChange={(e) => handleSingleInput(e, "6", "7")}
-                  sx={{color:"white", "& .MuiSvgIcon-root": { fontSize: 25,color:"white" } }}
+                  sx={{
+                    color: "white",
+                    "& .MuiSvgIcon-root": { fontSize: 25, color: "white" },
+                  }}
                 />
               }
-              label={<Typography style={{color:"white"}}>其他</Typography>}
+              label={<Typography style={{ color: "white" }}>其他</Typography>}
             />
           </div>
           <div className="innerTopup">
@@ -871,10 +982,15 @@ function Menu(props) {
                   name="topup"
                   checked={formValues.topup[0]}
                   onChange={(e) => handleSingleInput(e, "0", "3")}
-                  sx={{ color:"white","& .MuiSvgIcon-root": { fontSize: 38,color:"white" } }}
+                  sx={{
+                    color: "white",
+                    "& .MuiSvgIcon-root": { fontSize: 38, color: "white" },
+                  }}
                 />
               }
-              label={<Typography style={{color:"white"}}>充8000送4000</Typography>}
+              label={
+                <Typography style={{ color: "white" }}>充8000送4000</Typography>
+              }
             />
             <FormControlLabel
               control={
@@ -882,10 +998,15 @@ function Menu(props) {
                   name="topup"
                   checked={formValues.topup[1]}
                   onChange={(e) => handleSingleInput(e, "1", "3")}
-                  sx={{ color:"white","& .MuiSvgIcon-root": { fontSize: 38,color:"white" } }}
+                  sx={{
+                    color: "white",
+                    "& .MuiSvgIcon-root": { fontSize: 38, color: "white" },
+                  }}
                 />
               }
-              label={<Typography style={{color:"white"}}>充5000送2000</Typography>}
+              label={
+                <Typography style={{ color: "white" }}>充5000送2000</Typography>
+              }
             />
             <FormControlLabel
               control={
@@ -893,15 +1014,20 @@ function Menu(props) {
                   name="topup"
                   checked={formValues.topup[2]}
                   onChange={(e) => handleSingleInput(e, "2", "3")}
-                  sx={{ color:"white","& .MuiSvgIcon-root": { fontSize: 38,color:"white" } }}
+                  sx={{
+                    color: "white",
+                    "& .MuiSvgIcon-root": { fontSize: 38, color: "white" },
+                  }}
                 />
               }
-              label={<Typography style={{color:"white"}}>充3000送1000</Typography>}
+              label={
+                <Typography style={{ color: "white" }}>充3000送1000</Typography>
+              }
             />
           </div>
           <div className="rightLastRow">
             <TextField
-              style={{width:"210px"}}
+              style={{ width: "210px" }}
               name="phoneNumber"
               label="手机号(必填)"
               value={formValues.phoneNumber}
@@ -909,21 +1035,21 @@ function Menu(props) {
             />
 
             <TextField
-            style={{width:"210px"}}
+              style={{ width: "210px" }}
               name="customer"
               label="客户名(必填)"
               value={formValues.customer}
               onChange={handleInputChange}
             />
             <TextField
-            style={{width:"210px"}}
+              style={{ width: "210px" }}
               name="employee"
               label="理疗师"
               value={formValues.employee}
               onChange={handleInputChange}
             />
             <TextField
-            style={{width:"210px"}}
+              style={{ width: "210px" }}
               name="others"
               label="其他"
               value={formValues.others}
@@ -933,13 +1059,24 @@ function Menu(props) {
         </div>
       </div>
       <div style={{ marginTop: "-88px", textAlign: "center" }}>
-        <div style={{display:'inline-block',visibility:`${isAlerted}`,paddingTop:'2px'}}>
-            <Alert  variant="filled" severity="error">
-                {alertMessage}
-            </Alert>
+        <div
+          style={{
+            display: "inline-block",
+            visibility: `${isAlerted}`,
+            paddingTop: "2px",
+          }}
+        >
+          <Alert variant="filled" severity="error">
+            {alertMessage}
+          </Alert>
         </div>
         <div>
-          <Button variant="contained" color="primary" type="submit" style={{backgroundColor: "black"}}>
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            style={{ backgroundColor: "black" }}
+          >
             提交
           </Button>
         </div>

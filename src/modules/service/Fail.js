@@ -16,7 +16,7 @@ function Suceess(props) {
   return(
   <div className="box" style={sectionStyle}>
     <div>
-      <Typography variant="h4" style={{ color: "#e7e7e7",writingMode: "vertical-lr" }}>您已成功提交</Typography>
+      <Typography variant="h4" style={{ color: "red",writingMode: "vertical-lr" }}>提交失败，请检查网络后再提交</Typography>
     </div>
     <div>
       <Button onClick={(e) => {navigate(-1)}} variant="h4" type="submit" style={{margin:"55px", writingMode: "vertical-lr",backgroundColor: "#e7e7e7"}}>

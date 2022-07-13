@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Menu from "./modules/service/Menu";
 import Success from "./modules/service/Success";
+import Fail from "./modules/service/Fail";
 import Update from "./modules/admin/Update";
 import Login from "./modules/admin/Login";
 import Detail from "./modules/service/Detail";
@@ -15,6 +16,7 @@ class Router extends React.Component {
         <Route path="sk" element={<Menu place="蛇口别墅店"/>} />
         <Route path="update" element={<Update/>} />
         <Route path="success" element={<Success/>} />
+        <Route path="fail" element={<Fail/>} />
         <Route path="detail" element={<Detail/>} />
         <Route path="backend" element={<OrderList/>} />
         <Route path="login" element={<Login/>} />
