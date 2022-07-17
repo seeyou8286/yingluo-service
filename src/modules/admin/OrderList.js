@@ -129,6 +129,7 @@ function OrderList() {
           <TableRow>
             <TableCell>序列号</TableCell>
             <TableCell align="center">项目名称&nbsp;(数量)</TableCell>
+            <TableCell align="center">沐浴</TableCell>
             <TableCell align="center">其他</TableCell>
             <TableCell align="center">精油类型</TableCell>
             <TableCell align="center">受力程度</TableCell>
@@ -158,6 +159,7 @@ function OrderList() {
               <TableCell align="center" component="th" scope="row">
                 {row.item}
               </TableCell>
+              <TableCell align="center">{row.bath}</TableCell>
               <TableCell align="center">{row.others}</TableCell>
               <TableCell align="center">{row.oiltype}</TableCell>
               <TableCell align="center">{row.strength}</TableCell>

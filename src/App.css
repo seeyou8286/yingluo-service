@@ -57,6 +57,13 @@
   flex-wrap:nowrap;
 }
 
+.lastSecondRow {
+  padding-top: 5px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap:nowrap;
+}
+
 .rowDirection {
   display: flex;
   flex-direction: row;

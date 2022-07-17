@@ -36,13 +36,13 @@ var defaultValues = {
   source: [false, false, false, false, false, false, false],
   oilVolumn: [false, false, false],
   strength: [false, false, false],
+  bath: [false, false],
   phoneNumber: "",
   customer: "",
   employee: "",
   others: "",
   place: "",
 };
-
 
 function Menu(props) {
   const navigate = useNavigate();
@@ -51,7 +51,7 @@ function Menu(props) {
   const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
-    console.log(defaultValues)
+    console.log(defaultValues);
     defaultValues.place = props.place;
   }, []);
 
@@ -100,7 +100,6 @@ function Menu(props) {
       return;
     }
 
-    
     fetch(`${backendurl}/save`, {
       method: "post",
       headers: { "Content-Type": "application/json; charset=utf-8" },
@@ -108,7 +107,7 @@ function Menu(props) {
     })
       .then((response) => response.json())
       .then((data) => {
-        if(data.status == 'success') {
+        if (data.status == "success") {
           navigate("/success");
           defaultValues = {
             item: [false, false, false, false, false],
@@ -120,6 +119,7 @@ function Menu(props) {
             source: [false, false, false, false, false, false, false],
             oilVolumn: [false, false, false],
             strength: [false, false, false],
+            bath: [false, false],
             phoneNumber: "",
             customer: "",
             employee: "",
@@ -186,91 +186,212 @@ function Menu(props) {
         <div className="left">
           <div className="leftpanel-1">
             <div>
-              <ItemDetail onItemChange={handleMultiInput} onNumberChange={handleMultipleInputValue} price="298元" formValues={formValues} type="item" numberType="itemQuantity" index="0" label="【初之体验】 精油SPA&nbsp;&nbsp;60分钟" link="精油SPA"></ItemDetail>
-              <ItemDetail onItemChange={handleMultiInput} onNumberChange={handleMultipleInputValue} price="188元" formValues={formValues} type="item" numberType="itemQuantity" index="1" label="【久坐之殇】肩背释压&nbsp;&nbsp;45分钟" link="肩背释压"></ItemDetail>
-              <ItemDetail onItemChange={handleMultiInput} onNumberChange={handleMultipleInputValue} price="398元" formValues={formValues} type="item" numberType="itemQuantity" index="2" label="【元気臀震】强腰护肾&nbsp;&nbsp;60分钟" link="强腰护肾"></ItemDetail>
-              <ItemDetail onItemChange={handleMultiInput} onNumberChange={handleMultipleInputValue} price="488元" formValues={formValues} type="item" numberType="itemQuantity" index="3" label="【熬夜必点】淋巴净排&nbsp;&nbsp;90分钟" link="淋巴净排"></ItemDetail>
-              <ItemDetail onItemChange={handleMultiInput} onNumberChange={handleMultipleInputValue} price="588元" formValues={formValues} type="item" numberType="itemQuantity" index="4" label="【悠然舒展】奈良古态&nbsp;&nbsp;90分钟" link="奈良古态"></ItemDetail>
+              <ItemDetail
+                onItemChange={handleMultiInput}
+                onNumberChange={handleMultipleInputValue}
+                price="298元"
+                formValues={formValues}
+                type="item"
+                numberType="itemQuantity"
+                index="0"
+                label="【初之体验】 精油SPA&nbsp;&nbsp;60分钟"
+                link="精油SPA"
+              ></ItemDetail>
+              <ItemDetail
+                onItemChange={handleMultiInput}
+                onNumberChange={handleMultipleInputValue}
+                price="188元"
+                formValues={formValues}
+                type="item"
+                numberType="itemQuantity"
+                index="1"
+                label="【久坐之殇】肩背释压&nbsp;&nbsp;45分钟"
+                link="肩背释压"
+              ></ItemDetail>
+              <ItemDetail
+                onItemChange={handleMultiInput}
+                onNumberChange={handleMultipleInputValue}
+                price="398元"
+                formValues={formValues}
+                type="item"
+                numberType="itemQuantity"
+                index="2"
+                label="【元気臀震】强腰护肾&nbsp;&nbsp;60分钟"
+                link="强腰护肾"
+              ></ItemDetail>
+              <ItemDetail
+                onItemChange={handleMultiInput}
+                onNumberChange={handleMultipleInputValue}
+                price="488元"
+                formValues={formValues}
+                type="item"
+                numberType="itemQuantity"
+                index="3"
+                label="【熬夜必点】淋巴净排&nbsp;&nbsp;90分钟"
+                link="淋巴净排"
+              ></ItemDetail>
+              <ItemDetail
+                onItemChange={handleMultiInput}
+                onNumberChange={handleMultipleInputValue}
+                price="588元"
+                formValues={formValues}
+                type="item"
+                numberType="itemQuantity"
+                index="4"
+                label="【悠然舒展】奈良古态&nbsp;&nbsp;90分钟"
+                link="奈良古态"
+              ></ItemDetail>
             </div>
           </div>
           <div className="leftpanel-2">
             <div>
-            <ItemDetail onItemChange={handleMultiInput} onNumberChange={handleMultipleInputValue} price="628元" formValues={formValues} type="feature" numberType="featureQuantity" index="0" label="【奢宠女神】大阪樱花&nbsp;&nbsp;80分钟" link="大阪樱花"></ItemDetail>
-            <ItemDetail onItemChange={handleMultiInput} onNumberChange={handleMultipleInputValue} price="688元" formValues={formValues} type="feature" numberType="featureQuantity" index="1" label="【店铺爆款】京都神乐&nbsp;&nbsp;90分钟" link="京都神乐"></ItemDetail>
-            <ItemDetail onItemChange={handleMultiInput} onNumberChange={handleMultipleInputValue} price="888元" formValues={formValues} type="feature" numberType="featureQuantity" index="2" label="【净体祛湿】草津秘汤&nbsp;&nbsp;120分钟" link="草津秘汤"></ItemDetail>
-            <ItemDetail onItemChange={handleMultiInput} onNumberChange={handleMultipleInputValue} price="988元" formValues={formValues} type="feature" numberType="featureQuantity" index="3" label="【倾心奢享】东京花筏&nbsp;&nbsp;90分钟" link="东京花筏"></ItemDetail>
+              <ItemDetail
+                onItemChange={handleMultiInput}
+                onNumberChange={handleMultipleInputValue}
+                price="628元"
+                formValues={formValues}
+                type="feature"
+                numberType="featureQuantity"
+                index="0"
+                label="【奢宠女神】大阪樱花&nbsp;&nbsp;80分钟"
+                link="大阪樱花"
+              ></ItemDetail>
+              <ItemDetail
+                onItemChange={handleMultiInput}
+                onNumberChange={handleMultipleInputValue}
+                price="688元"
+                formValues={formValues}
+                type="feature"
+                numberType="featureQuantity"
+                index="1"
+                label="【店铺爆款】京都神乐&nbsp;&nbsp;90分钟"
+                link="京都神乐"
+              ></ItemDetail>
+              <ItemDetail
+                onItemChange={handleMultiInput}
+                onNumberChange={handleMultipleInputValue}
+                price="888元"
+                formValues={formValues}
+                type="feature"
+                numberType="featureQuantity"
+                index="2"
+                label="【净体祛湿】草津秘汤&nbsp;&nbsp;120分钟"
+                link="草津秘汤"
+              ></ItemDetail>
+              <ItemDetail
+                onItemChange={handleMultiInput}
+                onNumberChange={handleMultipleInputValue}
+                price="988元"
+                formValues={formValues}
+                type="feature"
+                numberType="featureQuantity"
+                index="3"
+                label="【倾心奢享】东京花筏&nbsp;&nbsp;90分钟"
+                link="东京花筏"
+              ></ItemDetail>
             </div>
           </div>
           <div className="leftpanel-3">
-            <div>
-              <div>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      name="oilType"
-                      checked={formValues.oilType[0]}
-                      onChange={(e) => handleSingleInput(e, "0", "5")}
-                      sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
-                    />
-                  }
-                  label="生榨椰子油【滋养肌肤】"
-                />
+            <div className="lastSecondRow">
+              <div style={{ width: "60%" }}>
+                <div>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        name="oilType"
+                        checked={formValues.oilType[0]}
+                        onChange={(e) => handleSingleInput(e, "0", "5")}
+                        sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                      />
+                    }
+                    label="生榨椰子油【滋养肌肤】"
+                  />
+                </div>
+                <div>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        name="oilType"
+                        checked={formValues.oilType[1]}
+                        onChange={(e) => handleSingleInput(e, "1", "5")}
+                        sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                      />
+                    }
+                    label="甜橙【保湿肌肤 • 平衡肌脂】"
+                  />
+                </div>
+                <div>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        name="oilType"
+                        checked={formValues.oilType[2]}
+                        onChange={(e) => handleSingleInput(e, "2", "5")}
+                        sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                      />
+                    }
+                    label="茉莉花【魅力增强】"
+                  />
+                </div>
+                <div>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        name="oilType"
+                        checked={formValues.oilType[3]}
+                        onChange={(e) => handleSingleInput(e, "3", "5")}
+                        sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                      />
+                    }
+                    label="薰衣草【镇静安神 • 放松心情】"
+                  />
+                </div>
+                <div>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        name="oilType"
+                        checked={formValues.oilType[4]}
+                        onChange={(e) => handleSingleInput(e, "4", "5")}
+                        sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                      />
+                    }
+                    label="橄榄精油【轻盈舒缓】"
+                  />
+                </div>
               </div>
               <div>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      name="oilType"
-                      checked={formValues.oilType[1]}
-                      onChange={(e) => handleSingleInput(e, "1", "5")}
-                      sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
-                    />
-                  }
-                  label="甜橙【保湿肌肤 • 平衡肌脂】"
-                />
-              </div>
-              <div>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      name="oilType"
-                      checked={formValues.oilType[2]}
-                      onChange={(e) => handleSingleInput(e, "2", "5")}
-                      sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
-                    />
-                  }
-                  label="茉莉花【魅力增强】"
-                />
-              </div>
-              <div>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      name="oilType"
-                      checked={formValues.oilType[3]}
-                      onChange={(e) => handleSingleInput(e, "3", "5")}
-                      sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
-                    />
-                  }
-                  label="薰衣草【镇静安神 • 放松心情】"
-                />
-              </div>
-              <div>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      name="oilType"
-                      checked={formValues.oilType[4]}
-                      onChange={(e) => handleSingleInput(e, "4", "5")}
-                      sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
-                    />
-                  }
-                  label="橄榄精油【轻盈舒缓】"
-                />
+                <div>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        name="bath"
+                        checked={formValues.bath[0]}
+                        onChange={(e) => handleSingleInput(e, "0", "2")}
+                        sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                      />
+                    }
+                    label="是"
+                  />
+                </div>
+                <div>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        name="bath"
+                        checked={formValues.bath[1]}
+                        onChange={(e) => handleSingleInput(e, "1", "2")}
+                        sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
+                      />
+                    }
+                    label="否"
+                  />
+                </div>
               </div>
             </div>
+
             <div className="lastRow">
-              <div style={{ width: "50%" }}>
+              <div style={{ width: "60%" }}>
                 <div>
                   <FormControlLabel
                     control={
