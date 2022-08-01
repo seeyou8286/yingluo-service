@@ -1,5 +1,5 @@
 {
-    "backendurl": "http://localhost:3000/info", 
+    "backendurl": "https://lispa.live/info", 
     "localurl":"http://localhost:3000/info",
     "remotedurl": "https://lispa.live/info"
 }

@@ -243,9 +243,9 @@ const Detail = (props) => {
             <TableHead>
               <TableRow>
                 <TableCell>原价（元）</TableCell>
-                <TableCell align="right">8000+4000/6.6折</TableCell>
-                <TableCell align="right">5000+2000/7.1折</TableCell>
-                <TableCell align="right">3000+1000/7.5</TableCell>
+                <TableCell align="right">充值8000/6.6折</TableCell>
+                <TableCell align="right">充值5000/7.1折</TableCell>
+                <TableCell align="right">充值3000/7.5折</TableCell>
                 {/* <TableCell align="right">线上</TableCell> */}
               </TableRow>
             </TableHead>

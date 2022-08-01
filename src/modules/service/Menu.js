@@ -6,10 +6,6 @@ import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Alert from "@mui/material/Alert";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import InputLabel from "@mui/material/InputLabel";
 // import Link from "@mui/material/Link";
 import { Link, useNavigate } from "react-router-dom";
 import Typography from "@mui/material/Typography";
@@ -275,7 +271,7 @@ function Menu(props) {
                 type="feature"
                 numberType="featureQuantity"
                 index="2"
-                label="【净体祛湿】草津秘汤&nbsp;&nbsp;120分钟"
+                label="【净体祛湿】草津秘汤&nbsp;120分钟"
                 link="草津秘汤"
               ></ItemDetail>
               <ItemDetail
