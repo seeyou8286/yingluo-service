@@ -290,7 +290,7 @@ function Menu(props) {
           <div className="leftpanel-3">
             <div className="lastSecondRow">
               <div style={{ width: "60%" }}>
-                <div>
+                <div className="rowDirection">
                   <FormControlLabel
                     control={
                       <Checkbox
@@ -302,8 +302,12 @@ function Menu(props) {
                     }
                     label="生榨椰子油【滋养肌肤】"
                   />
+                   <div className="pricePosition">
+                <p className="oilPrice">免费</p>
                 </div>
-                <div>
+                  
+                </div>
+                <div className="rowDirection">
                   <FormControlLabel
                     control={
                       <Checkbox
@@ -313,10 +317,12 @@ function Menu(props) {
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
-                    label="甜橙【保湿肌肤 • 平衡肌脂】"
-                  />
+                    label="甜橙【保湿肌肤】"
+                  /><div>
+                  <p className="oilPrice">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;30元</p>
+                  </div>
                 </div>
-                <div>
+                <div className="rowDirection">
                   <FormControlLabel
                     control={
                       <Checkbox
@@ -328,8 +334,9 @@ function Menu(props) {
                     }
                     label="茉莉花【魅力增强】"
                   />
+                    <p className="oilPrice">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;30元</p>
                 </div>
-                <div>
+                <div className="rowDirection">
                   <FormControlLabel
                     control={
                       <Checkbox
@@ -339,10 +346,11 @@ function Menu(props) {
                         sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                       />
                     }
-                    label="薰衣草【镇静安神 • 放松心情】"
+                    label="薰衣草【放松心情】"
                   />
+                    <p className="oilPrice">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;30元</p>
                 </div>
-                <div>
+                <div className="rowDirection">
                   <FormControlLabel
                     control={
                       <Checkbox
@@ -354,6 +362,7 @@ function Menu(props) {
                     }
                     label="橄榄精油【轻盈舒缓】"
                   />
+                    <p className="oilPrice">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;30元</p>
                 </div>
               </div>
               <div>
