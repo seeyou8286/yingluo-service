@@ -229,13 +229,13 @@ function Menu(props) {
               <ItemDetail
                 onItemChange={handleMultiInput}
                 onNumberChange={handleMultipleInputValue}
-                price="588元"
+                price="128元"
                 formValues={formValues}
                 type="item"
                 numberType="itemQuantity"
                 index="4"
-                label="【悠然舒展】奈良古态&nbsp;&nbsp;90分钟"
-                link="奈良古态"
+                label="【侍耳】采耳&nbsp;&nbsp;40分钟"
+                link="采耳"
               ></ItemDetail>
             </div>
           </div>
@@ -271,7 +271,7 @@ function Menu(props) {
                 type="feature"
                 numberType="featureQuantity"
                 index="2"
-                label="【净体祛湿】草津秘汤&nbsp;120分钟"
+                label="【泡浴温体】草津秘汤&nbsp;120分钟"
                 link="草津秘汤"
               ></ItemDetail>
               <ItemDetail

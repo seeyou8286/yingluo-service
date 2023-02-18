@@ -5,7 +5,7 @@ import jiuzuopic from "../../assets/item/久坐.png";
 import yuanqipic from "../../assets/item/元气.png";
 import jingtipic from "../../assets/item/净体.png";
 import nvshenpic from "../../assets/item/女神.png";
-import youranpic from "../../assets/item/悠然.png";
+import caierpic from "../../assets/item/采耳.png";
 import aoyepic from "../../assets/item/熬夜.png";
 import baokuanpic from "../../assets/item/爆款.png";
 import huafapic from "../../assets/item/花筏.png";
@@ -88,19 +88,19 @@ const linba = {
   pic:aoyepic
 }
 
-const nailiang = {
-  name:"【悠然舒展】奈良古态",
-  min:"60分钟",
-  price:"588元",
-  oil:"精油",
-  feature:'古法健能\n牵引拉伸、跪背顶腰\n无腹部、胸部\n（主：缓释疲劳、放松肌理）',
-  rough:"净足：5min\n脚踝+腿部（正）+手臂45min\n腿部（反）+跪背顶腰30min\n头部：10min",
-  parts:"净足：5min\n脚踝+腿部（正）+手臂45min\n腿部（反）+跪背顶腰30min\n头部：10min",
-  origin:"588",
-  discount1:"388",
-  discount2:"417",
-  discount3:"441",
-  pic:youranpic
+const caier = {
+  name:"【侍耳】采耳",
+  min:"40分钟",
+  price:"128元",
+  oil:"/",
+  feature:'全部使用一次性采耳用品',
+  rough:"耳部采耳",
+  parts:"耳部：40min",
+  origin:"128",
+  discount1:"84",
+  discount2:"90",
+  discount3:"96",
+  pic:caierpic
 }
 
 const daban = {
@@ -134,7 +134,7 @@ const jingdu = {
 }
 
 const caojing = {
-  name:"【净体祛湿】草津秘汤",
+  name:"【泡浴温体】草津秘汤",
   min:"120分钟",
   price:"888元",
   oil:"精油",
@@ -176,8 +176,8 @@ const Detail = (props) => {
     project= qiangyao;
   }else if (item == "淋巴净排") {
     project= linba;
-  }else if (item == "奈良古态") {
-    project= nailiang;
+  }else if (item == "采耳") {
+    project= caier;
   }else if (item == "京都神乐") {
     project= jingdu;
   }else if (item == "草津秘汤") {

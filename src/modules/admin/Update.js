@@ -18,7 +18,7 @@ import config from "../../../config/default.json";
 import Link from "@mui/material/Link";
 
 const backendurl = config.backendurl;
-const itemName = ["精油SPA", "肩背释压", "强腰护肾", "淋巴净排", "奈良古态"];
+const itemName = ["精油SPA", "肩背释压", "强腰护肾", "淋巴净排", "采耳"];
 const featureName = ["大阪樱花", "京都神乐", "草场秘汤", "东京花筏"];
 const oilTypeName = ["生榨椰子油", "甜橙", "茉莉花", "薰衣草", "橄榄精油"];
 const strengthName = ["大力", "适中", "小力"];
@@ -510,7 +510,7 @@ function Update({}) {
                           sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                         />
                       }
-                      label="【悠然舒展】奈良古态      &nbsp;90分钟"
+                      label="【侍耳】采耳      &nbsp;40分钟"
                     />
                     <Link
                       href="/detail"
@@ -685,7 +685,7 @@ function Update({}) {
                           sx={{ "& .MuiSvgIcon-root": { fontSize: 25 } }}
                         />
                       }
-                      label="【净体祛湿】草津秘汤      120分钟"
+                      label="【泡浴温体】草津秘汤      120分钟"
                     />
                     <Link
                       href="/detail"
